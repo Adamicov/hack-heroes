@@ -4,8 +4,13 @@
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content>
 
+  <ion-content>
+    <ion-buttons>
+      <button ion-item *ngFor="let p of pages" (click)=openPage(p)>
+        {{p.title}}
+      </button>
+    </ion-buttons>
   </ion-content>
 </ion-menu>
 

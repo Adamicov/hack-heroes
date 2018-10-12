@@ -11,12 +11,8 @@ import { Geolocation } from '@ionic-native/geolocation'
 */
 @Injectable()
 export class GeograbberService {
-  
-  latitude: any;
-  longitude: any;
 
   constructor(public geolocation: Geolocation) {
-  
   }
 
   getPosition(){

@@ -15,6 +15,7 @@ import { SearchPage } from '../pages/search/search';
 import { StationDetailsPage } from '../pages/station-details/station-details';
 import { RestProvider } from '../providers/rest/rest';
 import { HttpClientModule } from '@angular/common/http';
+import { RankProvider } from '../providers/rank/rank';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { HttpClientModule } from '@angular/common/http';
     GeograbberService,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RestProvider
+    RestProvider,
+    RankProvider
   ]
 })
 export class AppModule {}

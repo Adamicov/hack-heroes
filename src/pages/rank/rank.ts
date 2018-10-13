@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { RestProvider } from '../../providers/rest/rest'
 
 /**
  * Generated class for the RankPage page.
@@ -15,11 +16,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RankPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  stations: any;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RankPage');
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
+    this.restProvider.getStations()
+    .then(data => {
+      this.stations = data;
+      console.log(this.stations);
+    });
   }
 
 }

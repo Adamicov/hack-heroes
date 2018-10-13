@@ -47,9 +47,8 @@ import { HttpClientModule } from '@angular/common/http';
     SplashScreen,
     GeograbberService,
     Geolocation,
-    RestProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RestProvider,
+    RestProvider
   ]
 })
 export class AppModule {}

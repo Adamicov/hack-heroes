@@ -13,6 +13,9 @@ import { MapPage } from '../pages/map/map';
 import { RankPage } from '../pages/rank/rank';
 import { SearchPage } from '../pages/search/search';
 import { StationDetailsPage } from '../pages/station-details/station-details';
+import { RestProvider } from '../providers/rest/rest';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { StationDetailsPage } from '../pages/station-details/station-details';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -44,6 +48,7 @@ import { StationDetailsPage } from '../pages/station-details/station-details';
     GeograbberService,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    RestProvider
   ]
 })
 export class AppModule {}

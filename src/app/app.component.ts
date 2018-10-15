@@ -8,6 +8,7 @@ import {FavouritesPage} from '../pages/favourites/favourites';
 import {MapPage} from '../pages/map/map';
 import {RankPage} from '../pages/rank/rank';
 import {SearchPage} from '../pages/search/search';
+import { TestPage } from '../pages/test/test';
 
 @Component({templateUrl : 'app.html'})
 export class MyApp {
@@ -28,6 +29,7 @@ export class MyApp {
       {title : 'Mapa', component : MapPage, icon : 'map'},
       {title : 'Ranking', component : RankPage, icon : 'podium'},
       {title : 'Szukaj', component : SearchPage, icon : 'search'},
+      {title : 'TestPage', component: TestPage, icon: 'infinite'}
     ];
   }
   initializeApp() {

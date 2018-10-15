@@ -15,6 +15,7 @@ import { SearchPage } from '../pages/search/search';
 import { StationDetailsPage } from '../pages/station-details/station-details';
 import { RestProvider } from '../providers/rest/rest';
 import { HttpClientModule } from '@angular/common/http';
+import { TestPage } from '../pages/test/test';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     MapPage,
     RankPage,
     SearchPage,
-    StationDetailsPage
+    StationDetailsPage,
+    TestPage
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { HttpClientModule } from '@angular/common/http';
     MapPage,
     RankPage,
     SearchPage,
-    StationDetailsPage
+    StationDetailsPage,
+    TestPage
   ],
   providers: [
     StatusBar,

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { GeograbberService } from '../../providers/geograbber-service/geograbber-service';
 
 /**
  * Generated class for the TestPage page.
@@ -15,11 +16,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TestPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  latitude: any;
+  longitude: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public geograbber: GeograbberService) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TestPage');
+    
   }
 
 }

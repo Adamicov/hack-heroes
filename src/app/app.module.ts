@@ -16,6 +16,8 @@ import { StationDetailsPage } from '../pages/station-details/station-details';
 import { RestProvider } from '../providers/rest/rest';
 import { HttpClientModule } from '@angular/common/http';
 import { TestPage } from '../pages/test/test';
+import { StationService } from '../providers/station-service/station-service';
+import { HaversineService } from "ng2-haversine";
 
 
 @NgModule({
@@ -51,7 +53,9 @@ import { TestPage } from '../pages/test/test';
     GeograbberService,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RestProvider
+    RestProvider,
+    StationService,
+    HaversineService
   ]
 })
 export class AppModule {}

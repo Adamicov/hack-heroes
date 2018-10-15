@@ -2,13 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Station } from '../../models/station';
 import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 
-/*
-  Generated class for the RestProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
+
 @Injectable()
 export class RestProvider {
 
@@ -16,12 +13,9 @@ export class RestProvider {
 
   constructor(public http: HttpClient) { }
 
-  getStations(){
-    return new Promise(resolve => {
-      this.http.get(this.baseUrlApi + '/findAll').subscribe(data => {
-        resolve(data);
-      }, err => console.log(err));
-    });
+  getStations(): Observable<Station[]>{
+    return this.http.get(this.baseUrlApi + '/findAll')
+    .map((res: Response) => res.json().response.map((user: Station) => new Station().deserialize(user)));
   }
   
 }

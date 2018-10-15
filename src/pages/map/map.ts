@@ -49,13 +49,13 @@ export class MapPage {
 
   displayMarkers() {
     let markerIcon = leaflet.icon({
-      iconUrl: '/assets/imgs/redpin.png',
-      shadowUrl: '/assets/imgs/redpin.png',
-      iconSize:     [22, 47],
-      shadowSize:   [22, 47],
-      iconAnchor:   [11, 47],
-      shadowAnchor: [11, 47],
-      popupAnchor:  [-3, -76]
+      iconUrl: '/assets/imgs/greenpin.png',
+      shadowUrl: '/assets/imgs/greenpin.png',
+      iconSize:     [16, 16],
+      shadowSize:   [16, 16],
+      iconAnchor:   [8, 8],
+      shadowAnchor: [8, 8],
+      popupAnchor:  [8, 8]
     });
     let markerGroup = leaflet.featureGroup();
     for(var i = 0; i < this.stations.length; i++) {

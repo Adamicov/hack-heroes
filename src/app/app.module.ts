@@ -30,7 +30,7 @@ import { TestPage } from '../pages/test/test';
     RankPage,
     SearchPage,
     StationDetailsPage,
-    AddPage
+    AddPage,
     TestPage
   ],
   imports: [

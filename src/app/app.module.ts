@@ -52,8 +52,9 @@ import { IonicStorageModule }from '@ionic/storage';
     GeograbberService,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RestProvider,
-    RankProvider
+    RankProvider,
+    RestProvider
+    
   ]
 })
 export class AppModule {}

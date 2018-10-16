@@ -13,10 +13,11 @@ import { MapPage } from '../pages/map/map';
 import { RankPage } from '../pages/rank/rank';
 import { SearchPage } from '../pages/search/search';
 import { StationDetailsPage } from '../pages/station-details/station-details';
+import { AddPage } from '../pages/add/add';
+import { SettingsPage } from '../pages/settings/settings';
 import { RestProvider } from '../providers/rest/rest';
 import { HttpClientModule } from '@angular/common/http';
 import { TestPage } from '../pages/test/test';
-
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { TestPage } from '../pages/test/test';
     RankPage,
     SearchPage,
     StationDetailsPage,
+    AddPage
     TestPage
   ],
   imports: [
@@ -43,7 +45,8 @@ import { TestPage } from '../pages/test/test';
     RankPage,
     SearchPage,
     StationDetailsPage,
-    TestPage
+    AddPage
+    TestPage 
   ],
   providers: [
     StatusBar,

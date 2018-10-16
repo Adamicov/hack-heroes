@@ -15,11 +15,12 @@ import { RestProvider } from '../../providers/rest/rest'
   templateUrl: 'station-details.html',
 })
 export class StationDetailsPage {
-
+  selectedItem: any;
   stations: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider ) {
     console.log(this.restProvider.getStations());
+    this.selectedItem = navParams.get('item');
   }
 
   ionViewDidLoad() {

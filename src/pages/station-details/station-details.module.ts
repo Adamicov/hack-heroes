@@ -4,6 +4,7 @@ import { StationDetailsPage } from './station-details';
 
 @NgModule({
   declarations: [
+    StationDetailsPage,
   ],
   imports: [
     IonicPageModule.forChild(StationDetailsPage),

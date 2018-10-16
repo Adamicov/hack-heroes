@@ -1,17 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RankData } from '../../models/rankData';
 import { Station } from '../../models/station';
 import { Pollutions } from '../../models/pollutions';
 import { Observable } from 'rxjs';
-
-
-/*
-  Generated class for the RankProvider provider.
-
-  See  for more info on providers
-  and Angular DI.
-*/
+import { RestProvider } from '../../providers/rest/rest';
 @Injectable()
 
 
@@ -87,7 +79,7 @@ export class RankProvider {
 	];
 
 
-	constructor() {}
+	constructor(public restProvider: RestProvider) {}
 
 
 	stationRank =new Observable((observer) =>{
@@ -95,24 +87,3 @@ export class RankProvider {
 	})
 
 }
-/*
-
-export class Station {
-    id: number;
-    stationName: string;
-    latitude: number;
-    longitude: number;
-    city: {
-        name: string;
-        commune: {
-            communeName: string;
-            provinceName: string;
-        }
-    }
-    constructor (values: Object = {}){
-        Object.assign(this,values);
-    }
-
-}
-
-*/

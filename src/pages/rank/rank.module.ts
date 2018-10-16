@@ -4,6 +4,7 @@ import { RankPage } from './rank';
 
 @NgModule({
   declarations: [
+    RankPage,
   ],
   imports: [
     IonicPageModule.forChild(RankPage),

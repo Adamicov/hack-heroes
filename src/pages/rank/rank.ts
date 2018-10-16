@@ -17,19 +17,7 @@ import { Chart } from 'chart.js'
   selector: 'page-rank',
   templateUrl: 'rank.html',
 })
-
 export class RankPage {
-  /*
-  stations: any;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
-    this.restProvider.getStations()
-    .then(data => {
-      this.stations = data;
-      console.log(this.stations);
-    });
-  }
-  */
   @ViewChild('barCanvas') barCanvas;
   barChart: any;
   labels: string[];

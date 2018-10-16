@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest'
+
 import { RankData } from '../../models/rankData';
 import { RankProvider } from '../../providers/rank/rank';
 import { Chart } from 'chart.js'

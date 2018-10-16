@@ -15,6 +15,9 @@ import { SearchPage } from '../pages/search/search';
 import { StationDetailsPage } from '../pages/station-details/station-details';
 import { AddPage } from '../pages/add/add';
 import { SettingsPage } from '../pages/settings/settings';
+import { RestProvider } from '../providers/rest/rest';
+import { HttpClientModule } from '@angular/common/http';
+import { TestPage } from '../pages/test/test';
 
 @NgModule({
   declarations: [
@@ -26,10 +29,12 @@ import { SettingsPage } from '../pages/settings/settings';
     SearchPage,
     StationDetailsPage,
     AddPage
+    TestPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -41,6 +46,7 @@ import { SettingsPage } from '../pages/settings/settings';
     SearchPage,
     StationDetailsPage,
     AddPage
+    TestPage 
   ],
   providers: [
     StatusBar,
@@ -48,6 +54,7 @@ import { SettingsPage } from '../pages/settings/settings';
     GeograbberService,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    RestProvider
   ]
 })
 export class AppModule {}

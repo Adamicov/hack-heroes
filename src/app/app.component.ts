@@ -9,6 +9,7 @@ import {MapPage} from '../pages/map/map';
 import {RankPage} from '../pages/rank/rank';
 import {SearchPage} from '../pages/search/search';
 import { StationDetailsPage } from '../pages/station-details/station-details';
+import { TestPage } from '../pages/test/test';
 
 @Component({templateUrl : 'app.html'})
 export class MyApp {
@@ -29,6 +30,7 @@ export class MyApp {
       {title : 'Ranking', component : RankPage, icon : 'podium'},
       {title : 'Szukaj', component : SearchPage, icon : 'search'},
       {title : 'O nas!', component : AboutPage, icon : 'information-circle'},
+      {title : 'TestPage', component: TestPage, icon: 'infinite'}
     ];
   }
   initializeApp() {
@@ -46,8 +48,5 @@ export class MyApp {
     // navigate to the new page if it is not the current page
     this.nav.setRoot(page.component);
   }
-  showDetails(item)  {
-    this.nav.push(StationDetailsPage);
-  }
-
 }
+

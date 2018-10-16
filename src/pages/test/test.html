@@ -1,15 +1,25 @@
 <ion-header>
+
   <ion-navbar>
     <ion-buttons left>
         <button ion-button icon-only menuToggle>
           <ion-icon name="menu" left></ion-icon>
         </button>
     </ion-buttons>
-    <ion-title text-center>Tutaj testuje backend !</ion-title>
+    <ion-title text-center>Testowanie</ion-title>
   </ion-navbar>
+
 </ion-header>
 
+
 <ion-content>
-  <h1>Lat: {{latitude}}</h1>
-  <h1>Long:{{longitude}}</h1>
+  <ion-list inset>
+    <ion-item *ngFor="let measure of measureTab">
+      <h2>{{measure.id}}</h2>
+    </ion-item>
+    <!-- <ion-item *ngFor="let station of stations">
+      <h2>{{station.stationName}}</h2>
+      <h1>{{station.gegrLat}}</h1>
+      <h1>{{station.city.commune.provinceName}}</h1> -->
+  </ion-list>
 </ion-content>

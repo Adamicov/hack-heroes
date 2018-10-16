@@ -7,12 +7,15 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>stationDetails</ion-title>
+    <ion-title>Szczegóły stacji</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content >
+  <h2 *ngIf="selectedItem">test {{selectedItem.quality}}</h2>
+  <h3 *ngIf="selectedItem">
+    {{selectedItem.title}}
+  </h3>
 </ion-content>

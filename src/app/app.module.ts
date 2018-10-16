@@ -13,6 +13,8 @@ import { MapPage } from '../pages/map/map';
 import { RankPage } from '../pages/rank/rank';
 import { SearchPage } from '../pages/search/search';
 import { StationDetailsPage } from '../pages/station-details/station-details';
+import { AddPage } from '../pages/add/add';
+import { SettingsPage } from '../pages/settings/settings';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { StationDetailsPage } from '../pages/station-details/station-details';
     MapPage,
     RankPage,
     SearchPage,
-    StationDetailsPage
+    StationDetailsPage,
+    AddPage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { StationDetailsPage } from '../pages/station-details/station-details';
     MapPage,
     RankPage,
     SearchPage,
-    StationDetailsPage
+    StationDetailsPage,
+    AddPage
   ],
   providers: [
     StatusBar,

@@ -17,6 +17,8 @@ import { AddPage } from '../pages/add/add';
 import { SettingsPage } from '../pages/settings/settings';
 import { RestProvider } from '../providers/rest/rest';
 import { HttpClientModule } from '@angular/common/http';
+import { RankProvider } from '../providers/rank/rank';
+import { IonicStorageModule }from '@ionic/storage';
 import { TestPage } from '../pages/test/test';
 
 @NgModule({
@@ -34,6 +36,7 @@ import { TestPage } from '../pages/test/test';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     HttpClientModule
   ],
   bootstrap: [IonicApp],
@@ -54,7 +57,9 @@ import { TestPage } from '../pages/test/test';
     GeograbberService,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    RankProvider,
     RestProvider
+    
   ]
 })
 export class AppModule {}

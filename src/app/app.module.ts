@@ -16,6 +16,8 @@ import { StationDetailsPage } from '../pages/station-details/station-details';
 import { RestProvider } from '../providers/rest/rest';
 import { HttpClientModule } from '@angular/common/http';
 import { RankProvider } from '../providers/rank/rank';
+import { IonicStorageModule }from '@ionic/storage';
+
 
 
 @NgModule({
@@ -31,6 +33,7 @@ import { RankProvider } from '../providers/rank/rank';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     HttpClientModule
   ],
   bootstrap: [IonicApp],

@@ -4,7 +4,7 @@ import { FavouritesPage } from './favourites';
 
 @NgModule({
   declarations: [
-    FavouritesPage,
+
   ],
   imports: [
     IonicPageModule.forChild(FavouritesPage),

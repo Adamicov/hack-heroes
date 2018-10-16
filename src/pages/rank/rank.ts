@@ -16,6 +16,7 @@ import { Chart } from 'chart.js'
   selector: 'page-rank',
   templateUrl: 'rank.html',
 })
+
 export class RankPage {
   /*
   stations: any;
@@ -51,7 +52,7 @@ export class RankPage {
   prepareData(){
     this.labels=[];
     this.data=[];
-    let tempArray: Object[]=[];
+    let tempArray: Pomoc[]=[];
     for(let i=0;i<this.rankDatas.length&&i<this.numberOfRanked;i++){
       tempArray.push({name: this.rankDatas[i].station.city.name,number: this.rankDatas[i].pollutions[this.choosenType]});
       /*this.labels.push(this.rankDatas[i].station.city.name);
@@ -100,3 +101,10 @@ export class RankPage {
     })
   }
 }
+
+
+class Pomoc{
+  number: number;
+  name:string;
+}
+

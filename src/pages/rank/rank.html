@@ -19,9 +19,18 @@
 
 
 <ion-content>
-  <ion-list inset>
-    <ion-item *ngFor="let station of stations">
-      <h2>{{station.stationName}}</h2>
-    </ion-item>
-  </ion-list>
+  <ion-card>
+    <ion-card-header>
+      Wybierz typ Zanieczyszczeń: 
+    </ion-card-header>
+    <ion-card-content>
+      <ion-select [(ngModel)]="choosenType" (ionChange)="createChart()" >
+          <ion-option  *ngFor="let type of typesOfPollutions"
+          [value]="type" >
+          {{type}}
+        </ion-option>
+      </ion-select>
+    </ion-card-content>
+  </ion-card>
+  <canvas #barCanvas ></canvas>
 </ion-content>

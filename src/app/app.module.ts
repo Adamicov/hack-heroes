@@ -28,7 +28,7 @@ import { TestPage } from '../pages/test/test';
     RankPage,
     SearchPage,
     StationDetailsPage,
-    AddPage
+    AddPage,
     TestPage
   ],
   imports: [
@@ -45,8 +45,8 @@ import { TestPage } from '../pages/test/test';
     RankPage,
     SearchPage,
     StationDetailsPage,
-    AddPage
-    TestPage 
+    AddPage,
+    TestPage
   ],
   providers: [
     StatusBar,

@@ -19,9 +19,13 @@
 
 
 <ion-content padding>
-<ion-item>
-  <ion-label floating>Wpisz miasto...</ion-label>
-  <ion-input type="text"></ion-input>
-</ion-item>
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list>
+   <button ion-item *ngFor="let station of items" (click)="itemTapped($event, station)">
+     <h2>{{station.stationName}}</h2>
+     <h1>{{station.gegrLat}}</h1>
+     <h1>{{station.city.commune.provinceName}}</h1>
+   </button>
+ </ion-list>
 
 </ion-content>

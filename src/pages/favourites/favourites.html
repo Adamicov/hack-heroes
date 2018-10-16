@@ -25,8 +25,8 @@
 
 <ion-content class="bg">
   <ion-list no-lines>
-    <button ion-item outline *ngFor="let item of items" color="{{item.quality}}" (click)="itemTapped($event, item)">
-        <div class="data">Adres stacji: {{item.title}}</div>
+    <button ion-item *ngFor="let item of items" color="{{item.quality}}" (click)="itemTapped($event, item)">
+        <div class="data">Adres stacji:</div>
         <div class="data">Ostatnia aktualizacja</div>
         <div class="quality">Jakość Powietrza {{item.quality}}</div>
     </button>

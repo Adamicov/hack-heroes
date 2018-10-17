@@ -19,7 +19,7 @@
 
 
 <ion-content padding>
-  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-searchbar placeholder="Wpisz miasto..." (ionInput)="getItems($event)"></ion-searchbar>
   <ion-list>
    <button ion-item *ngFor="let station of items" (click)="itemTapped($event, station)">
      <h2>{{station.stationName}}</h2>

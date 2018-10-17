@@ -7,16 +7,25 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Dodaj stacje</ion-title>
+    <ion-title text-center>Dodaj stacje</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  Tu możesz dodać nowe stacje do swoich ulubionych!
-  <ion-item>
-    <ion-label floating>Wpisz miasto...</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
+<ion-content padding margin-top text-center>
+  <h1>Tu możesz dodać nowe stacje do swoich ulubionych!</h1>
+
+  <ion-searchbar placeholder="Wpisz miasto..." (ionInput)="getItems($event)"></ion-searchbar>
+
+  <ion-list>
+   <button ion-item *ngFor="let station of items" (click)="itemTapped($event, station)">
+     <h2>{{station.stationName}}</h2>
+     <h2>{{station.city.commune.provinceName}}</h2>
+     <button ion-button color="dark" outline icon-only item-right>
+       <ion-icon name="add"></ion-icon>
+     </button>
+   </button>
+ </ion-list>
+
 </ion-content>

@@ -17,8 +17,37 @@
 
 </ion-header>
 
+<ion-footer>
+  <ion-toolbar>
+  <div padding>
+    <ion-segment [(ngModel)]="rank">
+      <ion-segment-button value="best">
+        Najlepsze
+      </ion-segment-button>
+      <ion-segment-button value="worst">
+        Najgorsze
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+</ion-toolbar>
+</ion-footer>
 
 <ion-content>
+  <div [ngSwitch]="rank">
+    <ion-list *ngSwitchCase="'best'">
+      <ion-item>
+        <h2>Ruby</h2>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'worst'">
+      <ion-item>
+        <h2>Luna</h2>
+      </ion-item>
+    </ion-list>
+  </div>
+
+
   <ion-list inset>
     <ion-item *ngFor="let station of stations">
       <h2>{{station.stationName}}</h2>

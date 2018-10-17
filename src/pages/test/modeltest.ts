@@ -1,6 +1,10 @@
-export class Stacja {
+
+export class Station {
     name: any;
-    factor: any;
-    
+    city: any;
+    provinceName: any;
+    factorTab: any;
+    latitude: number;
+    longitude: number;
     constructor(){ }
 }

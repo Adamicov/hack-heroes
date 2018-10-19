@@ -13,12 +13,15 @@ import { MapPage } from '../pages/map/map';
 import { RankPage } from '../pages/rank/rank';
 import { SearchPage } from '../pages/search/search';
 import { StationDetailsPage } from '../pages/station-details/station-details';
+import { AddPage } from '../pages/add/add';
+import { SettingsPage } from '../pages/settings/settings';
 import { RestProvider } from '../providers/rest/rest';
 import { HttpClientModule } from '@angular/common/http';
+import { RankProvider } from '../providers/rank/rank';
+import { IonicStorageModule }from '@ionic/storage';
 import { TestPage } from '../pages/test/test';
 import { StationService } from '../providers/station-service/station-service';
 import { HaversineService } from "ng2-haversine";
-
 
 @NgModule({
   declarations: [
@@ -29,11 +32,13 @@ import { HaversineService } from "ng2-haversine";
     RankPage,
     SearchPage,
     StationDetailsPage,
+    AddPage,
     TestPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     HttpClientModule
   ],
   bootstrap: [IonicApp],
@@ -45,6 +50,7 @@ import { HaversineService } from "ng2-haversine";
     RankPage,
     SearchPage,
     StationDetailsPage,
+    AddPage,
     TestPage
   ],
   providers: [
@@ -53,9 +59,12 @@ import { HaversineService } from "ng2-haversine";
     GeograbberService,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+
     RestProvider,
     StationService,
-    HaversineService
+    HaversineService,
+    RankProvider
+
   ]
 })
 export class AppModule {}

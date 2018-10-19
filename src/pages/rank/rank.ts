@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest'
 
 import { RankData } from '../../models/rankData';
+import { DataCell } from '../../models/dataCell';
 import { RankProvider } from '../../providers/rank/rank';
 import { Chart } from 'chart.js'
 /**
@@ -18,6 +19,7 @@ import { Chart } from 'chart.js'
   templateUrl: 'rank.html',
 })
 export class RankPage {
+
   @ViewChild('barCanvas') barCanvas;
   barChart: any;
   labels: string[];
@@ -41,12 +43,12 @@ export class RankPage {
   prepareData(){
     this.labels=[];
     this.data=[];
-    let tempArray: Pomoc[]=[];
+
+    let tempArray: DataCell[]=[];
+
     for(let i=0;i<this.rankDatas.length&&i<this.numberOfRanked;i++){
       tempArray.push({name: this.rankDatas[i].station.city.name,number: this.rankDatas[i].pollutions[this.choosenType]});
-      /*this.labels.push(this.rankDatas[i].station.city.name);
-      this.data.push(this.rankDatas[i].pollutions[this.choosenType]);
-      */
+
     }
     tempArray=tempArray.sort((n1 ,n2)=>n2.number-n1.number);
     for(let i=0;i<tempArray.length;i++){

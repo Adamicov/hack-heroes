@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GeograbberService } from '../../providers/geograbber-service/geograbber-service';
 import { RestProvider } from '../../providers/rest/rest';
-import { Station } from '../test/modeltest';
 import { Polution } from './modeltest2';
-import { providerDef } from '@angular/core/src/view';
 import { StationObj } from '../../models/stationObj';
 
 /**

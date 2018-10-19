@@ -7,6 +7,6 @@ export class Station {
     factorTab: any;
     latitude: number;
     longitude: number;
-    polution: Polution[];
+    polutions: Polution[];
     constructor(){ }
 }

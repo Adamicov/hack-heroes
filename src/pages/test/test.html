@@ -14,8 +14,11 @@
 
 <ion-content>
   <ion-list inset>
-    <ion-item *ngFor="let measure of measureTabs">
-      <h2>{{measure.id}}</h2>
+    <ion-item *ngFor="let station of stationsObjTab">
+      <h2>{{station.name}}</h2>
+      <h2>{{station.city}}</h2>
+      <h2>{{station.latitude}}</h2>
+      <h2>{{station.longitude}}</h2>
     </ion-item>
     <!-- <ion-item *ngFor="let station of stations">
       <h2>{{station.stationName}}</h2>

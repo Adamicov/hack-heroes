@@ -5,6 +5,7 @@ import { RestProvider } from '../../providers/rest/rest';
 import { Station } from '../test/modeltest';
 import { Polution } from './modeltest2';
 import { providerDef } from '@angular/core/src/view';
+import { StationObj } from '../../models/stationObj';
 
 /**
  * Generated class for the TestPage page.
@@ -25,7 +26,7 @@ export class TestPage {
   stations: any;
   measureTabs: any; ///example http://api.gios.gov.pl/pjp-api/rest/station/sensors/14
   factor: any;
-  stationsObjTab: Station[] = [];
+  stationsObjTab: StationObj[] = [];
   
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public geograbber: GeograbberService, public restProvider: RestProvider) {
@@ -38,28 +39,31 @@ export class TestPage {
   getTab(){
     for (let i = 0; i < this.stations.length; i++){
       let station = this.stations[i];
-      let state = new Station();
+      let state:StationObj=new StationObj;
       state.name = station.stationName;
       state.provinceName = station.city.commune.provinceName;
-      state.latitude = station.geogrLat;
-      state.longitude = station.geogrLon;
+      state.latitude = station.gegrLat;
+      state.longitude = station.gegrLon;
       this.restProvider.getMeasurementTab(station.id).then(data => { // example http://api.gios.gov.pl/pjp-api/rest/station/sensors/14
         this.measureTabs = data;
         let polutions: Polution[] = []; 
         for (let j = 0; j < this.measureTabs.length; j++){ // example http://api.gios.gov.pl/pjp-api/rest/station/sensors/14
           let provide = this.measureTabs[j];
+          
           this.restProvider.getProper(provide.id).then(data =>{
             let proper: any = data;
             let tempArray: any = proper.values;
             for (let k = 0; k < tempArray.length; k++){
-              if (tempArray[k]!== null){
-                polutions.push(provide.param.paramFormula, tempArray[k]);
+              if (tempArray[k].value != null){
+                polutions.push(new Polution (provide.param.paramFormula, tempArray[k].value));
+                
                 break;
               }
             }
           })
         }
-        state.polutions = polutions;
+        state.pollutions = polutions;
+        
       })
       this.stationsObjTab.push(state);
       

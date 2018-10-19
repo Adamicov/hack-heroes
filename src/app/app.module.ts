@@ -20,6 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RankProvider } from '../providers/rank/rank';
 import { IonicStorageModule }from '@ionic/storage';
 import { TestPage } from '../pages/test/test';
+import { StationService } from '../providers/station-service/station-service';
+import { HaversineService } from "ng2-haversine";
 
 @NgModule({
   declarations: [
@@ -57,9 +59,12 @@ import { TestPage } from '../pages/test/test';
     GeograbberService,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RankProvider,
-    RestProvider
-    
+
+    RestProvider,
+    StationService,
+    HaversineService,
+    RankProvider
+
   ]
 })
 export class AppModule {}

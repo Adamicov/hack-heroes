@@ -14,7 +14,7 @@ export class Pollutions {
                  g_SO3: number, 
                  g_SO2: number,
                  g_O3: number,
-                 g_C6H6: number;
+                 g_C6H6: number
                  )
     {
         this.PM_10=g_PM_10;

@@ -53,7 +53,9 @@ export class TestPage {
           })
         }
         state.polutions = polutions;
+
       })
+      this.stationsObjTab.push(state);
     }
   }
 

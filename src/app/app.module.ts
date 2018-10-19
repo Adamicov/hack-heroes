@@ -49,7 +49,7 @@ import { TestPage } from '../pages/test/test';
     SearchPage,
     StationDetailsPage,
     AddPage,
-    TestPage 
+    TestPage
   ],
   providers: [
     StatusBar,

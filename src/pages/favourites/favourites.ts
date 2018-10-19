@@ -17,19 +17,11 @@ import { StationDetailsPage } from '../station-details/station-details';
 })
 export class FavouritesPage {
   color: string[];
-  items: Array<{title: string, quality: string}>;
+  items: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
     this.color = ['good', 'medium', 'bad', 'worst'];
 
-    this.items = [];
-    for(let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Stacja #' + i,
-        quality: this.color[Math.floor(Math.random()*4)]
-        });
-
-    }
   }
 
   ionViewDidLoad() {

@@ -30,9 +30,8 @@ import { TestPage } from '../pages/test/test';
     RankPage,
     SearchPage,
     StationDetailsPage,
-    TestPage,
-    AddPage
-
+    AddPage,
+    TestPage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +49,7 @@ import { TestPage } from '../pages/test/test';
     SearchPage,
     StationDetailsPage,
     AddPage,
-    TestPage 
+    TestPage
   ],
   providers: [
     StatusBar,

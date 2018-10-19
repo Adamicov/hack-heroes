@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { RestProvider } from '../../providers/rest/rest'
 
 /**
  * Generated class for the StationDetailsPage page.
@@ -16,10 +15,8 @@ import { RestProvider } from '../../providers/rest/rest'
 })
 export class StationDetailsPage {
   selectedItem: any;
-  stations: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider ) {
-    console.log(this.restProvider.getStations());
+  constructor(public navCtrl: NavController, public navParams: NavParams){
     this.selectedItem = navParams.get('item');
   }
 

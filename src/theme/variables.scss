@@ -38,9 +38,17 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  back:       #93B4D8,
+  good:       #228B22, //rgb(20, 200, 20),
+  medium:     #EE9600, //rgb(200, 200, 50),
+  bad:        #E06000, //rgb(220, 130, 40),
+  worst:      #A6001A, //rgb(150, 0, 0)
+  good2:       #026B02, //rgb(20, 200, 20),
+  medium2:     #DE7600, //rgb(200, 200, 50),
+  bad2:        #D05000, //rgb(220, 130, 40),
+  worst2:      #96000A //rgb(150, 0, 0)
 );
-
 
 // App iOS Variables
 // --------------------------------------------------

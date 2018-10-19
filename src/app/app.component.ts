@@ -8,13 +8,15 @@ import {FavouritesPage} from '../pages/favourites/favourites';
 import {MapPage} from '../pages/map/map';
 import {RankPage} from '../pages/rank/rank';
 import {SearchPage} from '../pages/search/search';
+import { StationDetailsPage } from '../pages/station-details/station-details';
+import { TestPage } from '../pages/test/test';
 
 @Component({templateUrl : 'app.html'})
 export class MyApp {
 
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = AboutPage;
+  rootPage: any = FavouritesPage;
   pages: Array<{title : string, component: any, icon: string}>;
 
   constructor(public platform: Platform, public menu: MenuController,
@@ -23,11 +25,12 @@ export class MyApp {
     this.initializeApp();
 
     this.pages = [
-      {title : 'O nas!', component : AboutPage, icon : 'information-circle'},
       {title : 'Ulubione', component : FavouritesPage, icon : 'heart'},
       {title : 'Mapa', component : MapPage, icon : 'map'},
       {title : 'Ranking', component : RankPage, icon : 'podium'},
       {title : 'Szukaj', component : SearchPage, icon : 'search'},
+      {title : 'O nas!', component : AboutPage, icon : 'information-circle'},
+      {title : 'TestPage', component: TestPage, icon: 'infinite'}
     ];
   }
   initializeApp() {
@@ -46,3 +49,4 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 }
+

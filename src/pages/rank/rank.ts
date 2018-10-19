@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest'
+
 import { RankData } from '../../models/rankData';
 import { DataCell } from '../../models/dataCell';
 import { RankProvider } from '../../providers/rank/rank';
@@ -42,7 +43,9 @@ export class RankPage {
   prepareData(){
     this.labels=[];
     this.data=[];
+
     let tempArray: DataCell[]=[];
+
     for(let i=0;i<this.rankDatas.length&&i<this.numberOfRanked;i++){
       tempArray.push({name: this.rankDatas[i].station.city.name,number: this.rankDatas[i].pollutions[this.choosenType]});
 
@@ -89,3 +92,10 @@ export class RankPage {
     })
   }
 }
+
+
+class Pomoc{
+  number: number;
+  name:string;
+}
+

@@ -1,4 +1,4 @@
-import { Polution } from './modeltest2';
+import { Polution } from './polution';
 
 export class StationObj  {
     name:string;

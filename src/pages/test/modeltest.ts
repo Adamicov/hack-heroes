@@ -1,3 +1,4 @@
+import { Polution } from "./modeltest2";
 
 export class Station {
     name: any;
@@ -6,5 +7,6 @@ export class Station {
     factorTab: any;
     latitude: number;
     longitude: number;
+    polution: Polution[];
     constructor(){ }
 }

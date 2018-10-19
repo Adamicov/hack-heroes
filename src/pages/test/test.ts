@@ -4,6 +4,7 @@ import { GeograbberService } from '../../providers/geograbber-service/geograbber
 import { RestProvider } from '../../providers/rest/rest';
 import { Station } from '../test/modeltest';
 import { Polution } from './modeltest2';
+import { providerDef } from '@angular/core/src/view';
 
 /**
  * Generated class for the TestPage page.
@@ -49,7 +50,13 @@ export class TestPage {
           let provide = this.measureTabs[j];
           this.restProvider.getProper(provide.id).then(data =>{
             let proper: any = data;
-            polutions.push(new Polution(provide.param.paramFormula, proper.values[0]));
+            let tempArray: any = proper.values;
+            for (let k = 0; k < tempArray.length; k++){
+              if (tempArray[k]!== null){
+                polutions.push(provide.param.paramFormula, tempArray[k]);
+                break;
+              }
+            }
           })
         }
         state.polutions = polutions;

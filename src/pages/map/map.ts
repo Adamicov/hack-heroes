@@ -1,5 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { RestProvider } from '../../providers/rest/rest';
+import { AlertController } from 'ionic-angular';
 import leaflet from 'leaflet';
 
 /**
@@ -17,14 +19,22 @@ import leaflet from 'leaflet';
 export class MapPage {
   @ViewChild('pollutionmap') mapContainer: ElementRef;
   pollutionmap: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  stations: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public alertCtrl: AlertController) {
   	
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MapPage');
+    this.restProvider.getStations()
+    .then(data => {
+      this.stations = data;
+      //console.log(this.stations);
+      this.displayMarkers();
+    });
     this.loadMap();
-    this.displayMarkers();
+    
+    
   }
 
   loadMap() {
@@ -39,19 +49,29 @@ export class MapPage {
 
   displayMarkers() {
     let markerIcon = leaflet.icon({
-      iconUrl: '/assets/imgs/redpin.png',
-      shadowUrl: '/assets/imgs/redpin.png',
-      iconSize:     [45, 95],
-      shadowSize:   [45, 95],
-      iconAnchor:   [22, 95],
-      shadowAnchor: [22, 95],
-      popupAnchor:  [-3, -76]
+      iconUrl: '/assets/imgs/greenpin.png',
+      shadowUrl: '/assets/imgs/greenpin.png',
+      iconSize:     [16, 16],
+      shadowSize:   [16, 16],
+      iconAnchor:   [8, 8],
+      shadowAnchor: [8, 8],
+      popupAnchor:  [8, 8]
     });
     let markerGroup = leaflet.featureGroup();
-    let marker: any = leaflet.marker([50.815941, 19.117404], {icon: markerIcon}).on('click', () => {
-      alert('Temp functionality - add popup or something else');
-    })
-    markerGroup.addLayer(marker);
+    for(var i = 0; i < this.stations.length; i++) {
+    let self = this.stations[i];
+    //this.stations.foreach((element)=>{
+      let marker: any = leaflet.marker([self.gegrLat, self.gegrLon], {icon: markerIcon}).on('click', () => {
+      let alert = this.alertCtrl.create({
+          title: `Stacja ${self.stationName}`,
+          subTitle: 'Dane o stacji: Fill-in!',
+          buttons: ['Oki!']
+        });
+        alert.present();
+      })
+      markerGroup.addLayer(marker);
+    }
+    
     this.pollutionmap.addLayer(markerGroup);
   }
 

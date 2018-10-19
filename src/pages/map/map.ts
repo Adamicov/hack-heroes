@@ -2,6 +2,8 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import { AlertController } from 'ionic-angular';
+import { RankData } from '../../models/rankData';
+import { RankProvider } from '../../providers/rank/rank';
 import leaflet from 'leaflet';
 
 /**
@@ -20,8 +22,16 @@ export class MapPage {
   @ViewChild('pollutionmap') mapContainer: ElementRef;
   pollutionmap: any;
   stations: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public alertCtrl: AlertController) {
+  rankDatas: RankData[];
+  typesOfPollutions: string[] = [
+    'PM_10','PM_25','NO2','SO3','SO2','O3','C6H6'
+  ];
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public alertCtrl: AlertController, public rankProvider: RankProvider) {
   	
+  }
+
+  ngOnInit(rankProvider: RankProvider){
+    this.rankProvider.stationRank.subscribe((value:RankData[])=>this.rankDatas=value);
   }
 
   ionViewDidLoad() {
@@ -48,7 +58,7 @@ export class MapPage {
   }
 
   displayMarkers() {
-    let markerIcon = leaflet.icon({
+    let greenIcon = leaflet.icon({
       iconUrl: '/assets/imgs/greenpin.png',
       shadowUrl: '/assets/imgs/greenpin.png',
       iconSize:     [16, 16],
@@ -57,14 +67,46 @@ export class MapPage {
       shadowAnchor: [8, 8],
       popupAnchor:  [8, 8]
     });
+    let orangeIcon = leaflet.icon({
+      iconUrl: '/assets/imgs/orangepin.png',
+      shadowUrl: '/assets/imgs/orangepin.png',
+      iconSize:     [16, 16],
+      shadowSize:   [16, 16],
+      iconAnchor:   [8, 8],
+      shadowAnchor: [8, 8],
+      popupAnchor:  [8, 8]
+    });
+    let redIcon = leaflet.icon({
+      iconUrl: '/assets/imgs/redpin.png',
+      shadowUrl: '/assets/imgs/redpin.png',
+      iconSize:     [16, 16],
+      shadowSize:   [16, 16],
+      iconAnchor:   [8, 8],
+      shadowAnchor: [8, 8],
+      popupAnchor:  [8, 8]
+    });
     let markerGroup = leaflet.featureGroup();
     for(var i = 0; i < this.stations.length; i++) {
-    let self = this.stations[i];
-    //this.stations.foreach((element)=>{
-      let marker: any = leaflet.marker([self.gegrLat, self.gegrLon], {icon: markerIcon}).on('click', () => {
+      let self = this.stations[i];
+      let pollutions = this.rankDatas[0].pollutions;
+      let testie = "";
+      if(self.stationName == "Wrocław - Korzeniowskiego") {
+        testie = `PM_10: ${this.rankDatas[0].pollutions["PM_10"]}`;
+      } else {
+        testie = "Fill-in!";
+      }
+      //this.stations.foreach((element)=>{
+      let marker: any = leaflet.marker([self.gegrLat, self.gegrLon], {icon: redIcon}).on('click', () => {
       let alert = this.alertCtrl.create({
           title: `Stacja ${self.stationName}`,
-          subTitle: 'Dane o stacji: Fill-in!',
+          subTitle: `<p>Dane o stacji:</p>
+                     <p>PM<sub>10</sub>: ${pollutions["PM_10"]}</p>
+                     <p>PM<sub>25</sub>: ${pollutions["PM_25"]}</p>
+                     <p>NO<sub>2</sub>: ${pollutions["NO2"]}</p>
+                     <p>SO<sub>3</sub>: ${pollutions["SO3"]}</p>
+                     <p>SO<sub>2</sub>: ${pollutions["SO2"]}</p>
+                     <p>O<sub>3</sub>: ${pollutions["O3"]}</p>
+                     <p>C<sub>6</sub>H<sub>6</sub>: ${pollutions["C6H6"]}</p>`,
           buttons: ['Oki!']
         });
         alert.present();

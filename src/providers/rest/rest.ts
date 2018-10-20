@@ -14,9 +14,9 @@ import 'rxjs/operator/map';
 @Injectable()
 export class RestProvider {
 
-  baseUrlApi: string = "http://localhost:8100/pjp-api/rest/station"
-  sensorsUrl: string = '/sensors/'
-  factorUrl: string = 'http://localhost:8100/pjp-api/rest/data/getData/'
+  baseUrlApi: string = "http://localhost:8100/pjp-api/rest/station";
+  sensorsUrl: string = '/sensors/';
+  factorUrl: string = 'http://localhost:8100/pjp-api/rest/data/getData/';
   stations:Station[]=[];
   stationsObjTab: StationObj[]=[];
 
@@ -47,12 +47,15 @@ export class RestProvider {
     })
   }
 
+  
+
   getTab=function(){
     let theese:RestProvider=this;
-    return new Promise(resolve=>{this.getStations().then(data=> {
+    this.getStations().then(data=> {
           let stations=data;
           let stationsObjTab:StationObj[]=[];
-
+          let wyslane=0;
+          let otrzymane=0;
           
           
             for (let i = 0; i < stations.length; i++){
@@ -62,12 +65,13 @@ export class RestProvider {
               state.provinceName = station.city.commune.provinceName;
               state.latitude = station.gegrLat;
               state.longitude = station.gegrLon;
+              wyslane++;
               theese.getMeasurementTab(station.id).then(data => {
                   let measureTabs:any = data;
                   let polutions: Polution[] = []; 
                   for (let j = 0; j < measureTabs.length; j++){
                       let provide = measureTabs[j];
-                    
+                      wyslane++;
                       theese.getProper(provide.id).then(data =>{
                         let proper: any = data;
                         let tempArray: any = proper.values;
@@ -78,22 +82,28 @@ export class RestProvider {
                             break;
                           }
                         }
+                        otrzymane++;
                       });
                   }
+                otrzymane++;
                state.pollutions = polutions;
                state.station=stations[i];
                stationsObjTab.push(state);
+               if(datas.length==stations.length){
+                   //console.log(datas);
+                  resolve (datas)
+               }
                });
             
                 
               }
               //console.log(stationsObjTab);
-              resolve(stationsObjTab);
+              if(i-10>stations.length)
+                return stationsObjTab;
           }
       
     );
     
-  })
   }
 
 
@@ -140,16 +150,20 @@ export class RestProvider {
                  state.station=stations[i];
                  state.pollutions=pol;
                  datas.push(state);
+                 if(datas.length==stations.length){
+                   //console.log(datas);
+                  resolve (datas)
+                }
                  });
-              
+                
                   
               }
-
-              console.log(datas);
-              resolve(datas);
-        });
-        
+                 if(i>stations.length+10){
+                  resolve (datas)
+        }
       
+        });
+       
     });
   }
 

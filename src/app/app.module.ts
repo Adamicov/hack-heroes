@@ -17,8 +17,12 @@ import { AddPage } from '../pages/add/add';
 import { SettingsPage } from '../pages/settings/settings';
 import { RestProvider } from '../providers/rest/rest';
 import { HttpClientModule } from '@angular/common/http';
+import { RankProvider } from '../providers/rank/rank';
+import { IonicStorageModule }from '@ionic/storage';
 import { TestPage } from '../pages/test/test';
 import { FavouritesService } from '../providers/FavouritesService/favourites-service';
+import { StationService } from '../providers/station-service/station-service';
+import { HaversineService } from "ng2-haversine";
 
 @NgModule({
   declarations: [
@@ -35,6 +39,7 @@ import { FavouritesService } from '../providers/FavouritesService/favourites-ser
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     HttpClientModule
   ],
   bootstrap: [IonicApp],
@@ -55,8 +60,11 @@ import { FavouritesService } from '../providers/FavouritesService/favourites-ser
     GeograbberService,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RestProvider,
     //Storage
+    RestProvider,
+    StationService,
+    HaversineService,
+    RankProvider
   ]
 })
 export class AppModule {}

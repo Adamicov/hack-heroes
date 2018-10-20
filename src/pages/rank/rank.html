@@ -17,40 +17,21 @@
 
 </ion-header>
 
-<ion-footer>
-  <ion-toolbar>
-  <div padding>
-    <ion-segment [(ngModel)]="rank">
-      <ion-segment-button value="best">
-        Najlepsze
-      </ion-segment-button>
-      <ion-segment-button value="worst">
-        Najgorsze
-      </ion-segment-button>
-    </ion-segment>
-  </div>
-</ion-toolbar>
-</ion-footer>
+<ion-content>
 
-<ion-content class="bg">
-  <div [ngSwitch]="rank">
-    <ion-list *ngSwitchCase="'best'">
-      <ion-item>
-        <h2>Ruby</h2>
-      </ion-item>
-    </ion-list>
-
-    <ion-list *ngSwitchCase="'worst'">
-      <ion-item>
-        <h2>Luna</h2>
-      </ion-item>
-    </ion-list>
-  </div>
-
-
-  <ion-list inset>
-    <ion-item style="background: rgba(255,255,255,0)" *ngFor="let station of stations">
-      <h2>{{station.stationName}}</h2>
-    </ion-item>
-  </ion-list>
+  <ion-card>
+    <ion-card-header>
+      Wybierz typ Zanieczyszczeń: 
+    </ion-card-header>
+    <ion-card-content>
+      <ion-select [(ngModel)]="choosenType" (ionChange)="createChart()" >
+          <ion-option  *ngFor="let type of typesOfPollutions"
+          [value]="type" >
+          {{type}}
+        </ion-option>
+      </ion-select>
+    </ion-card-content>
+  </ion-card>
+  <canvas #barCanvas ></canvas>
+  
 </ion-content>

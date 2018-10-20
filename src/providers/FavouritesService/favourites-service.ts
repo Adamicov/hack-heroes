@@ -1,4 +1,4 @@
-/*import {NativeStorage} from '@ionic-native/native-storage';
+import {NativeStorage} from '@ionic-native/native-storage';
 import {Injectable} from '@angular/core';
 
 @Injectable()
@@ -13,15 +13,14 @@ export class FavouritesService{
     }
 
     getFavourites(){
-      return this.nativeStorage.getItem('favourites')
-        .then(
-          (favourites) => {
-            this.favourites = favourites == null ? [] : favourites;
-            return this.favourites.slice();
-          }
-        )
+        return this.nativeStorage.getItem('favourites')
+          .then(
+            (favourites) => {
+              this.favourites = favourites == null ? [] : favourites;
+              return this.favourites.slice();
+            }
+          )
     }
 
 
 }
-*/

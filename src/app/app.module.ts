@@ -18,7 +18,6 @@ import { SettingsPage } from '../pages/settings/settings';
 import { RestProvider } from '../providers/rest/rest';
 import { HttpClientModule } from '@angular/common/http';
 import { RankProvider } from '../providers/rank/rank';
-import { IonicStorageModule }from '@ionic/storage';
 import { TestPage } from '../pages/test/test';
 import { FavouritesService } from '../providers/FavouritesService/favourites-service';
 import { StationService } from '../providers/station-service/station-service';
@@ -39,7 +38,6 @@ import { HaversineService } from "ng2-haversine";
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot(),
     HttpClientModule
   ],
   bootstrap: [IonicApp],
@@ -60,7 +58,6 @@ import { HaversineService } from "ng2-haversine";
     GeograbberService,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    //Storage
     RestProvider,
     StationService,
     HaversineService,

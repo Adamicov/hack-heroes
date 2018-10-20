@@ -18,6 +18,7 @@ import { SettingsPage } from '../pages/settings/settings';
 import { RestProvider } from '../providers/rest/rest';
 import { HttpClientModule } from '@angular/common/http';
 import { TestPage } from '../pages/test/test';
+import { FavouritesService } from '../providers/FavouritesService/favourites-service';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { TestPage } from '../pages/test/test';
     GeograbberService,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RestProvider
+    RestProvider,
+    //Storage
   ]
 })
 export class AppModule {}

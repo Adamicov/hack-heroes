@@ -26,7 +26,7 @@ export class AddPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public restProvider:RestProvider,
-    public nativeStorage: NativeStorage,
+  //  public nativeStorage: NativeStorage,
     public favouritesService: FavouritesService
   ) {
     this.restProvider.getStations()

@@ -1,4 +1,5 @@
 import { Polution } from './polution';
+import { Station } from './station';
 
 export class StationObj  {
     name:string;
@@ -6,6 +7,7 @@ export class StationObj  {
     latitude:number;
     longitude:number;
     pollutions: Polution[];
+    station:Station;
 
     constructor () { }
 }

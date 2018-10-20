@@ -2,6 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { StationObj } from '../../models/stationObj';
 import { Polution } from '../../models/polution';
+import { Station } from '../../models/station';
+import { RankData } from '../../models/rankData';
+import { Pollutions } from '../../models/pollutions';
 import 'rxjs/operator/map';
 
 
@@ -14,14 +17,14 @@ export class RestProvider {
   baseUrlApi: string = "http://localhost:8100/pjp-api/rest/station"
   sensorsUrl: string = '/sensors/'
   factorUrl: string = 'http://localhost:8100/pjp-api/rest/data/getData/'
-  stations:any=null;
-  stationsObjTab: StationObj[]=null;
+  stations:Station[]=[];
+  stationsObjTab: StationObj[]=[];
 
   constructor(public http: HttpClient) { }
 
    getStations(){
     return new Promise(resolve => {
-      this.http.get(this.baseUrlApi + '/findAll').subscribe(data => {
+      this.http.get(this.baseUrlApi + '/findAll').subscribe((data : Station[]) => {
         resolve(data);
       }, err => console.log(err));
 
@@ -78,17 +81,76 @@ export class RestProvider {
                       });
                   }
                state.pollutions = polutions;
+               state.station=stations[i];
                stationsObjTab.push(state);
                });
             
                 
               }
+              //console.log(stationsObjTab);
               resolve(stationsObjTab);
           }
       
     );
     
   })
+  }
+
+
+
+
+
+
+
+
+
+  stationRank=function(){
+    let theese=this;
+
+      return new Promise(resolve=>{
+          this.getStations().then(data=> {
+              let stations=data;
+              let stationsObjTab:StationObj[]=[];
+              let datas:RankData[]=[];
+              
+              
+              for (let i = 0; i < stations.length; i++){
+                let station = stations[i];
+                let state:RankData=new RankData();
+
+                theese.getMeasurementTab(station.id).then(data => {
+                    let measureTabs:any = data;
+                    let polutions: Polution[] = []; 
+                    let pol=new Pollutions(null,null,null,null,null,null,null);
+                    for (let j = 0; j < measureTabs.length; j++){
+                        let provide = measureTabs[j];
+                      
+                        theese.getProper(provide.id).then(data =>{
+                          let proper: any = data;
+                          let tempArray: any = proper.values;
+                          for (let k = 0; k < tempArray.length; k++){
+                            if (tempArray[k].value != null){
+                              pol[provide.param.paramFormula]=tempArray[k].value;
+                              break;
+                            }
+                          }
+                        });
+                    }
+
+                 state.station=stations[i];
+                 state.pollutions=pol;
+                 datas.push(state);
+                 });
+              
+                  
+              }
+
+              console.log(datas);
+              resolve(datas);
+        });
+        
+      
+    });
   }
 
 }

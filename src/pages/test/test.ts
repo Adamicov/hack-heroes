@@ -23,7 +23,7 @@ export class TestPage {
   stations: any;
   measureTabs: any; ///example http://api.gios.gov.pl/pjp-api/rest/station/sensors/14
   factor: any;
-  stationsObjTab: StationObj[] = [];
+  stationsObjTab: any;
   
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
@@ -33,6 +33,7 @@ export class TestPage {
 
     this.restProvider.getStations().then(data=>{
         this.stations=data;
+        console.log(data);
             this.restProvider.getTab().then(data=>{
               this.stationsObjTab=data;
             });

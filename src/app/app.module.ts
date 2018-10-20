@@ -63,7 +63,7 @@ import { HaversineService } from "ng2-haversine";
     RestProvider,
     StationService,
     HaversineService,
-    RankProvider
+    RankProvider,
 
   ]
 })

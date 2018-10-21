@@ -65,7 +65,7 @@ import { HaversineProvider } from '../providers/haversine/haversine';
     //Storage
     RestProvider,
     StationService,
-    HaversineService,
+    HaversineProvider,
     FavouritesService
 
   ]

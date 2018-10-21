@@ -21,13 +21,15 @@ export class FavouritesPage {
   color: string[];
   constructor(public restProvider: RestProvider,public loadingController:LoadingController,public navCtrl: NavController, public navParams: NavParams) {
     this.color = ['good', 'medium', 'bad', 'worst'];
-    let loading:any;
-    loading = this.loadingController.create({ content: "Właśnie pobierane są najświeższe informacje!" });
-    loading.present();
-    this.restProvider.getTab().then((value:StationObj[])=>{
-      loading.dismissAll();
-      
-    });
+    if(this.restProvider.czy){
+      let loading:any;
+      loading = this.loadingController.create({ content: "Właśnie pobierane są najświeższe informacje!" });
+      loading.present();
+      this.restProvider.getTab().then((value:StationObj[])=>{
+        loading.dismissAll();
+        this.restProvider.czy=false;
+      });
+    }
   }
 
   ionViewDidLoad() {

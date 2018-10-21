@@ -4,6 +4,7 @@ import { StationObj } from '../../models/stationObj';
 import { Polution } from '../../models/polution';
 import { RankData } from '../../models/rankData';
 import { Pollutions } from '../../models/pollutions';
+import { Station } from '../../models/station';
 import 'rxjs/operator/map';
 
 
@@ -12,7 +13,7 @@ import 'rxjs/operator/map';
 
 @Injectable()
 export class RestProvider {
-
+  czy:boolean=true;
   baseUrlApi: string = "http://localhost:8100/pjp-api/rest/station";
   sensorsUrl: string = '/sensors/';
   factorUrl: string = 'http://localhost:8100/pjp-api/rest/data/getData/';

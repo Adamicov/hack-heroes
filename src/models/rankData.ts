@@ -1,4 +1,3 @@
-import { Station } from './station';
 import { Pollutions } from './pollutions';
 
 export class RankData {

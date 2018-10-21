@@ -1,9 +1,9 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { RestProvider } from '../../providers/rest/rest';
 import { AlertController } from 'ionic-angular';
-import { RankData } from '../../models/rankData';
-import { RankProvider } from '../../providers/rank/rank';
+import { RestProvider } from '../../providers/rest/rest';
+import { StationDetailsPage } from '../station-details/station-details';
+import { StationObj } from '../../models/stationObj';
 import leaflet from 'leaflet';
 
 /**
@@ -22,26 +22,19 @@ export class MapPage {
   @ViewChild('pollutionmap') mapContainer: ElementRef;
   pollutionmap: any;
   stations: any;
-  rankDatas: RankData[];
   typesOfPollutions: string[] = [
     'PM_10','PM_25','NO2','SO3','SO2','O3','C6H6'
   ];
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public alertCtrl: AlertController, public rankProvider: RankProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public alertCtrl: AlertController) {
   	
-  }
-
-  ngOnInit(rankProvider: RankProvider){
-    this.rankProvider.stationRank.subscribe((value:RankData[])=>this.rankDatas=value);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MapPage');
-    this.restProvider.getStations()
-    .then(data => {
+    this.restProvider.getTab().then((data:StationObj[]) => {
       this.stations = data;
-      //console.log(this.stations);
       this.displayMarkers();
-    });
+    })
     this.loadMap();
     
     
@@ -87,27 +80,24 @@ export class MapPage {
     });
     let markerGroup = leaflet.featureGroup();
     for(var i = 0; i < this.stations.length; i++) {
-      let self = this.stations[i];
-      let pollutions = this.rankDatas[0].pollutions;
-      let testie = "";
-      if(self.stationName == "Wrocław - Korzeniowskiego") {
-        testie = `PM_10: ${this.rankDatas[0].pollutions["PM_10"]}`;
-      } else {
-        testie = "Fill-in!";
-      }
-      //this.stations.foreach((element)=>{
-      let marker: any = leaflet.marker([self.gegrLat, self.gegrLon], {icon: redIcon}).on('click', () => {
-      let alert = this.alertCtrl.create({
-          title: `Stacja ${self.stationName}`,
+      let station = this.stations[i];
+
+      let marker: any = leaflet.marker([station.latitude, station.longitude], {icon: redIcon}).on('click', () => {
+        let alert = this.alertCtrl.create({
+          title: `Stacja ${station.name}`,
           subTitle: `<p>Dane o stacji:</p>
-                     <p>PM<sub>10</sub>: ${pollutions["PM_10"]}</p>
-                     <p>PM<sub>25</sub>: ${pollutions["PM_25"]}</p>
-                     <p>NO<sub>2</sub>: ${pollutions["NO2"]}</p>
-                     <p>SO<sub>3</sub>: ${pollutions["SO3"]}</p>
-                     <p>SO<sub>2</sub>: ${pollutions["SO2"]}</p>
-                     <p>O<sub>3</sub>: ${pollutions["O3"]}</p>
-                     <p>C<sub>6</sub>H<sub>6</sub>: ${pollutions["C6H6"]}</p>`,
-          buttons: ['Oki!']
+                     ${0 < station.pollutions.length ? `<p>PM<sub>10</sub>: ${station.pollutions[0].value}</p>` : ""}
+                     ${1 < station.pollutions.length ? `<p>PM<sub>25</sub>: ${station.pollutions[1].value}</p>` : ""}
+                     ${2 < station.pollutions.length ? `<p>NO<sub>2</sub>: ${station.pollutions[2].value}</p>` : ""}
+                     ${3 < station.pollutions.length ? `<p>SO<sub>3</sub>: ${station.pollutions[3].value}</p>` : ""}
+                     ${4 < station.pollutions.length ? `<p>SO<sub>2</sub>: ${station.pollutions[4].value}</p>` : ""}
+                     ${5 < station.pollutions.length ? `<p>O<sub>3</sub>: ${station.pollutions[5].value}</p>` : ""}
+                     ${6 < station.pollutions.length ? `<p>C<sub>6</sub>H<sub>6</sub>: ${station.pollutions[6].value}</p>` : ""}`,
+          buttons: [{
+            text: 'Info',
+            handler: ()=> {
+              this.navCtrl.push(StationDetailsPage, {item: station});
+            }},'Powróć']
         });
         alert.present();
       })

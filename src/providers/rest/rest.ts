@@ -115,9 +115,11 @@ export class RestProvider {
                 }
               otrzymane++;
              state.pollutions = polutions;
-             state.station=stations[i];
+             state.id=stations[i].id;
+             state.cityName=stations[i].city.name;
             this.stationsObjTab.push(state);
              if(this.stationsObjTab.length==stations.length){
+               console.log(this.stationsObjTab);
                 resolve (this.stationsObjTab)
              }
              });

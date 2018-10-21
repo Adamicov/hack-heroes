@@ -14,7 +14,7 @@ export class GeograbberService {
 
   constructor(public geolocation: Geolocation) { }
 
-  getLatitude(){
-    this.geolocation.getCurrentPosition();
+  getPosition(){
+    return this.geolocation.getCurrentPosition();
   }
 }

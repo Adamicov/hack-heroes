@@ -24,6 +24,7 @@ import { FavouritesService } from '../providers/FavouritesService/favourites-ser
 import { StationService } from '../providers/station-service/station-service';
 import { MyStationPage } from '../pages/my-station/my-station';
 import { HaversineProvider } from '../providers/haversine/haversine';
+import { QualityProvider } from '../providers/quality/quality';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { HaversineProvider } from '../providers/haversine/haversine';
     StationService,
     HaversineProvider,
     RankProvider,
-    FavouritesService
+    FavouritesService,
+    QualityProvider
 
   ]
 })

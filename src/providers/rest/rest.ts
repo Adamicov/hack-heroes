@@ -24,7 +24,11 @@ export class RestProvider {
 
    getStations(){
     return new Promise(resolve => {
+      if(this.stations.length>0){
+        resolve(this.stations);
+      }
       this.http.get(this.baseUrlApi + '/findAll').subscribe((data : Station[]) => {
+        this.stations=data;
         resolve(data);
       }, err => console.log(err));
 
@@ -71,112 +75,115 @@ export class RestProvider {
   getTab=function(){
     let theese:RestProvider=this;
     return new Promise(resolve=>{
-    this.getStations().then(data=> {
+      if(this.stationsObjTab.length>0){
+       // console.log("ok");
+        resolve (this.stationsObjTab);
+      }
+      this.getStations().then(data=> {
     	 
           let stations=data;
-          let stationsObjTab:StationObj[]=[];
           let wyslane=0;
           let otrzymane=0;
           
           
-            for (let i = 0; i < stations.length; i++){
-              let station = stations[i];
-              let state:StationObj=new StationObj;
-              state.name = station.stationName;
-              state.provinceName = station.city.commune.provinceName;
-              state.latitude = station.gegrLat;
-              state.longitude = station.gegrLon;
-              wyslane++;
-              theese.getMeasurementTab(station.id).then(data => {
-                  let measureTabs:any = data;
-                  let polutions: Polution[] = []; 
-                  for (let j = 0; j < measureTabs.length; j++){
-                      let provide = measureTabs[j];
-                      wyslane++;
-                      theese.getProper(provide.id).then(data =>{
-                        let proper: any = data;
-                        let tempArray: any = proper.values;
-                        for (let k = 0; k < tempArray.length; k++){
-                          if (tempArray[k].value != null){
-                            polutions.push(new Polution (provide.param.paramFormula, tempArray[k].value));
-                            
-                            break;
-                          }
+          for (let i = 0; i < stations.length; i++){
+            let station = stations[i];
+            let state:StationObj=new StationObj;
+            state.name = station.stationName;
+            state.provinceName = station.city.commune.provinceName;
+            state.latitude = station.gegrLat;
+            state.longitude = station.gegrLon;
+            wyslane++;
+            theese.getMeasurementTab(station.id).then(data => {
+                let measureTabs:any = data;
+                let polutions: Polution[] = []; 
+                for (let j = 0; j < measureTabs.length; j++){
+                    let provide = measureTabs[j];
+                    wyslane++;
+                    theese.getProper(provide.id).then(data =>{
+                      let proper: any = data;
+                      let tempArray: any = proper.values;
+                      for (let k = 0; k < tempArray.length; k++){
+                        if (tempArray[k].value != null){
+                          polutions.push(new Polution (provide.param.paramFormula, tempArray[k].value));
+                          
+                          break;
                         }
-                        otrzymane++;
-                      });
-                  }
-                otrzymane++;
-               state.pollutions = polutions;
-               state.station=stations[i];
-               stationsObjTab.push(state);
-               if(stationsObjTab.length==stations.length){
-                   //console.log(datas);
-                  resolve (stationsObjTab)
-               }
-               });
-           		 if(i-10>stations.length)
-               		 resolve (stationsObjTab);
-                
-              }
-              //console.log(stationsObjTab);
+                      }
+                      otrzymane++;
+                    });
+                }
+              otrzymane++;
+             state.pollutions = polutions;
+             state.id=stations[i].id;
+             state.cityName=stations[i].city.name;
+            this.stationsObjTab.push(state);
+             if(this.stationsObjTab.length==stations.length){
+               console.log(this.stationsObjTab);
+                resolve (this.stationsObjTab)
+             }
+             });
+         		 if(i-10>stations.length)
+             		 resolve (this.stationsObjTab);
+              
+            }
               
           }
      
     );
      });
   }
+  datas:RankData[]=[];
 
   stationRank=function(){
     let theese=this;
 
       return new Promise(resolve=>{
-          this.getStations().then(data=> {
-              let stations=data;
-              let stationsObjTab:StationObj[]=[];
-              let datas:RankData[]=[];
-              
-              
-              for (let i = 0; i < stations.length; i++){
-                let station = stations[i];
-                let state:RankData=new RankData();
-
-                theese.getMeasurementTab(station.id).then(data => {
-                    let measureTabs:any = data;
-                    let polutions: Polution[] = []; 
-                    let pol=new Pollutions(null,null,null,null,null,null,null);
-                    for (let j = 0; j < measureTabs.length; j++){
-                        let provide = measureTabs[j];
-                      
-                        theese.getProper(provide.id).then(data =>{
-                          let proper: any = data;
-                          let tempArray: any = proper.values;
-                          for (let k = 0; k < tempArray.length; k++){
-                            if (tempArray[k].value != null){
-                              pol[provide.param.paramFormula]=tempArray[k].value;
-                              break;
-                            }
-                          }
-                        });
-                    }
-
-                 state.station=stations[i];
-                 state.pollutions=pol;
-                 datas.push(state);
-                 if(datas.length==stations.length){
-                   //console.log(datas);
-                  resolve (datas)
-                }
-                 });
-                 if(i>stations.length+10){
-                  resolve (datas)
-                  
-              }
-                
+        if(this.datas.length>0){
+          resolve (this.datas);
         }
-      
-        });
-       
+        this.getStations().then(data=> {
+            let stations=data;
+            for (let i = 0; i < stations.length; i++){
+              let station = stations[i];
+              let state:RankData=new RankData();
+
+              theese.getMeasurementTab(station.id).then(data => {
+                let measureTabs:any = data;
+                let polutions: Polution[] = []; 
+                let pol=new Pollutions(null,null,null,null,null,null,null);
+                for (let j = 0; j < measureTabs.length; j++){
+                    let provide = measureTabs[j];
+                  
+                    theese.getProper(provide.id).then(data =>{
+                      let proper: any = data;
+                      let tempArray: any = proper.values;
+                      for (let k = 0; k < tempArray.length; k++){
+                        if (tempArray[k].value != null){
+                          pol[provide.param.paramFormula]=tempArray[k].value;
+                          break;
+                        }
+                      }
+                    });
+                }
+
+               state.station=stations[i];
+               state.pollutions=pol;
+               this.datas.push(state);
+               if(this.datas.length==stations.length){
+                resolve (this.datas)
+                }
+           });
+
+           if(i>stations.length+10){
+            resolve (this.datas)
+            
+           }
+              
+      }
+    
+      });
+     
     });
   }
   

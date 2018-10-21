@@ -24,15 +24,22 @@ export class RankPage {
   barChart: any=null;
   labels: string[];
   data: number[];
-  choosenType: string = "PM_25";
+  choosenType: string = "";
   numberOfRanked: number = 5;
   rankDatas: RankData[]=[];
+  types:string[]=["najmniej zanieczyszczone","najbardziej zanieczyszczone"];
+  czy:boolean=false;
+  type:string=this.types[0];
   typesOfPollutions: string[] = [
     'PM10','PM2.5','NO2','CO','SO2','O3','C6H6'
   ];
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
-        this.restProvider.stationRank().then((value:RankData[])=>{this.rankDatas=value;this.createChart();});
-    
+    this.restProvider.stationRank().then((value:RankData[])=>{
+      //console.log("ok");
+      this.rankDatas=value;
+      this.createChart();
+      this.czy=true;
+    });
   }
 
   ngOnInit(rankProvider: RankProvider){
@@ -42,11 +49,11 @@ export class RankPage {
 
   ionViewDidLoad(){
     Chart.scaleService.updateScaleDefaults('bar', {
-    ticks: {
-        min: 0
-    }
-  });
-    console.log("rankPage");
+      ticks: {
+          min: 0
+      }
+    });
+    //console.log("rankPage");
 
   }
 
@@ -63,58 +70,64 @@ export class RankPage {
       
 
     }
-    tempArray=tempArray.sort(function(n1 ,n2){return n2.number-n1.number});
+    let temp1=this.type;
+    let temp2=this.types[0];
+    tempArray=tempArray.sort(function(n1 ,n2){
+      let i=1;
+      if(temp1==temp2){
+        i=-1;
+      }
+
+      return i*(n2.number-n1.number);
+    });
     
     for(let i=0;i<tempArray.length&&i<this.numberOfRanked;i++){
-      console.log(tempArray[i]);
+      //console.log(tempArray[i]);
       this.labels.push(tempArray[i].name);
       this.data.push(tempArray[i].number);
     }
   }
 
   createChart(){
-    this.prepareData();
-    if(this.barChart!=null){
-      this.barChart.destroy();
-    }
-    this.barChart=new Chart(this.barCanvas.nativeElement,{
-      type: 'bar',
-      data: {
-        labels: this.labels,
-        datasets: [{
-          borderColor: 'black',
-          borderWidth: '2',
-          backgroungColor:'blue',
-          label: this.choosenType,
-          data: this.data
-        }]
-      },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-                beginAtZero: true
-            }
+    if(this.choosenType!=""){
+      this.prepareData();
+      if(this.barChart!=null){
+        this.barChart.destroy();
+      }
+
+      this.barChart=new Chart(this.barCanvas.nativeElement,{
+        type: 'bar',
+        data: {
+          labels: this.labels,
+          datasets: [{
+            borderColor: 'black',
+            borderWidth: '2',
+            backgroungColor:'blue',
+            label: this.choosenType,
+            data: this.data
           }]
         },
-        legend: {
-          display: false
-        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                  beginAtZero: true
+              }
+            }]
+          },
+          legend: {
+            display: false,
+            labelString: 'gramów na metr sześcienny'
+          },
 
-        title: {
-          display: true,
-          text: "Zanieczyszczenie "+this.choosenType
+          title: {
+            display: true,
+            text: "Zanieczyszczenie "+this.choosenType
+          }
+
+          
         }
-
-        
-      }
-    })
+      })
+    }
   }
 }
-
-
-class Pomoc{
-  number: number;
-  name:string;
-}
-

@@ -33,7 +33,7 @@ export class TestPage {
 
     this.restProvider.getStations().then(data=>{
         this.stations=data;
-        console.log(data);
+        //console.log(data);
             this.restProvider.getTab().then(data=>{
               this.stationsObjTab=data;
             });

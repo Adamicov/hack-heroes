@@ -31,6 +31,7 @@ export class RankPage {
     'PM10','PM2.5','NO2','CO','SO2','O3','C6H6'
   ];
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
+
         this.restProvider.stationRank().then((value:RankData[])=>{this.rankDatas=value;this.createChart();});
     
   }
@@ -42,11 +43,11 @@ export class RankPage {
 
   ionViewDidLoad(){
     Chart.scaleService.updateScaleDefaults('bar', {
-    ticks: {
-        min: 0
-    }
-  });
-    console.log("rankPage");
+      ticks: {
+          min: 0
+      }
+    });
+    //console.log("rankPage");
 
   }
 
@@ -66,7 +67,7 @@ export class RankPage {
     tempArray=tempArray.sort(function(n1 ,n2){return n2.number-n1.number});
     
     for(let i=0;i<tempArray.length&&i<this.numberOfRanked;i++){
-      console.log(tempArray[i]);
+      //console.log(tempArray[i]);
       this.labels.push(tempArray[i].name);
       this.data.push(tempArray[i].number);
     }

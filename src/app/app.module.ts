@@ -23,6 +23,7 @@ import { TestPage } from '../pages/test/test';
 import { FavouritesService } from '../providers/FavouritesService/favourites-service';
 import { StationService } from '../providers/station-service/station-service';
 import { HaversineService } from "ng2-haversine";
+import { MyStationPage } from '../pages/my-station/my-station';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { HaversineService } from "ng2-haversine";
     SearchPage,
     StationDetailsPage,
     AddPage,
-    TestPage
+    TestPage,
+    MyStationPage
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { HaversineService } from "ng2-haversine";
     SearchPage,
     StationDetailsPage,
     AddPage,
-    TestPage
+    TestPage,
+    MyStationPage
   ],
   providers: [
     StatusBar,

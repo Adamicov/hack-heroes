@@ -5,6 +5,7 @@ import {GeoCoord} from '../../providers/haversine/geocoord';
 import { StationObj } from '../../models/stationObj';
 import { RestProvider } from '../../providers/rest/rest';
 import { HaversineProvider } from '../../providers/haversine/haversine';
+import { Polution } from '../../models/polution';
 
 /**
  * Generated class for the MyStationPage page.
@@ -21,15 +22,18 @@ import { HaversineProvider } from '../../providers/haversine/haversine';
 export class MyStationPage {
 
   stations: StationObj[] = [];
+  pollution: Polution[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation, public restProvider: RestProvider, public haversineService: HaversineProvider) {
-    
-   
+    this.restProvider.getTab().then((data: StationObj[]) => {
+      this.stations = data;
+      let station = this.getNearestStation();
+      this.restProvider.getSingleStation(station.id).then(data => {
+       this.pollution;
+      })
+    })
   }
 
-  getNearestPollution(){
-    let nearestStation = this.getNearestStation();
-  }
 
   getNearestStation(){
     let station: StationObj = this.stations[0];

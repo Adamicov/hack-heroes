@@ -52,23 +52,25 @@ export class RestProvider {
   }
 
   getSingleStation(stationId: any){
-    this.getMeasurementTab(stationId).then(data => {
-      let measureTabs: any = data;
-      let pollutions: Polution[] = [];
-      for (let j = 0; j < measureTabs.length; j++){
-        let provide = measureTabs[j];
-        this.getProper(provide.id).then(data =>{
-          let proper: any = data;
-          let tempArray: any = proper.values;
-          for (let k = 0; k < tempArray.length; k++){
-            if (tempArray[k].value != null){
-              pollutions.push(new Polution (provide.param.paramFormula, tempArray[k].value));
-              break;
+    return new Promise(resolve => {
+      this.getMeasurementTab(stationId).then(data => {
+        let measureTabs: any = data;
+        let pollutions: Polution[] = [];
+        for (let j = 0; j < measureTabs.length; j++){
+          let provide = measureTabs[j];
+          this.getProper(provide.id).then(data =>{
+            let proper: any = data;
+            let tempArray: any = proper.values;
+            for (let k = 0; k < tempArray.length; k++){
+              if (tempArray[k].value != null){
+                pollutions.push(new Polution (provide.param.paramFormula, tempArray[k].value));
+                break;
+              }
             }
-          }
-          return pollutions;
-        });
-      } 
+            resolve(pollutions);
+          });
+        } 
+      })
     })
   }
 

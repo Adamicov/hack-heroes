@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest'
 import { StationDetailsPage } from '../station-details/station-details';
 import { LoadingController } from 'ionic-angular';
+import { StationObj } from '../../models/stationObj';
 
 /**
  * Generated class for the SearchPage page.

@@ -22,8 +22,9 @@
     <ion-card>
       <ion-card-content>
         <ion-item>
+          <ion-label> Wybierz typ Zanieczyszczeń: </ion-label>
+
           <ion-select [(ngModel)]="choosenType" (ionChange)="createChart()" >
-            <ion-label> Wybierz typ Zanieczyszczeń: </ion-label>
               <ion-option  *ngFor="let type of typesOfPollutions"
               [value]="type" >
               {{type}}
@@ -35,8 +36,9 @@
     <ion-card>
       <ion-card-content>
         <ion-item>
-          <ion-select [(ngModel)]="type" (ionChange)="createChart()" >
-            <ion-label> najbardziej, czy najmniej zanieczyszczone miejsce w Polsce? </ion-label>
+          <ion-label> najbardziej, czy najmniej zanieczyszczone miejsca w Polsce? </ion-label>
+          
+          <ion-select [(ngModel)]="type" (ionChange)="createChart()" >  
               <ion-option  *ngFor="let type of types"
               [value]="type" >
               {{type}}

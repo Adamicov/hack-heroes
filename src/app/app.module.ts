@@ -17,7 +17,6 @@ import { AddPage } from '../pages/add/add';
 import { SettingsPage } from '../pages/settings/settings';
 import { RestProvider } from '../providers/rest/rest';
 import { HttpClientModule } from '@angular/common/http';
-import { RankProvider } from '../providers/rank/rank';
 //import { IonicStorageModule }from '@ionic/storage';
 import { TestPage } from '../pages/test/test';
 import { FavouritesService } from '../providers/FavouritesService/favourites-service';
@@ -68,7 +67,6 @@ import { QualityProvider } from '../providers/quality/quality';
     RestProvider,
     StationService,
     HaversineProvider,
-    RankProvider,
     FavouritesService,
     QualityProvider
 

@@ -4,7 +4,6 @@ import { RestProvider } from '../../providers/rest/rest'
 
 import { RankData } from '../../models/rankData';
 import { DataCell } from '../../models/dataCell';
-import { RankProvider } from '../../providers/rank/rank';
 import { Chart } from 'chart.js'
 /**
  * Generated class for the RankPage page.
@@ -42,10 +41,6 @@ export class RankPage {
     });
   }
 
-  ngOnInit(rankProvider: RankProvider){
-    
-    
-  }
 
   ionViewDidLoad(){
     Chart.scaleService.updateScaleDefaults('bar', {

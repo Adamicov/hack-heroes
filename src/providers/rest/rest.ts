@@ -4,6 +4,7 @@ import { StationObj } from '../../models/stationObj';
 import { Polution } from '../../models/polution';
 import { RankData } from '../../models/rankData';
 import { Pollutions } from '../../models/pollutions';
+import { Station } from '../../models/station';
 import 'rxjs/operator/map';
 
 

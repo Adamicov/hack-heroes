@@ -68,7 +68,9 @@ import { MyStationPage } from '../pages/my-station/my-station';
     StationService,
     HaversineService,
     RankProvider,
+
     FavouritesService
+
   ]
 })
 export class AppModule {}

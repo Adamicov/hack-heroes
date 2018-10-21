@@ -43,6 +43,7 @@ export class AddPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddPage');
   }
+
     itemAdd(event, item){
       this.favouritesService.addFavourite(item);
     }
@@ -68,3 +69,4 @@ export class AddPage {
 
 
 }
+

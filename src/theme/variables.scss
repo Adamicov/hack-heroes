@@ -44,16 +44,28 @@ $colors: (
   medium:     #EE9600, //rgb(200, 200, 50),
   bad:        #E06000, //rgb(220, 130, 40),
   worst:      #A6001A, //rgb(150, 0, 0)
-  good2:       #026B02, //rgb(20, 200, 20),
-  medium2:     #DE7600, //rgb(200, 200, 50),
-  bad2:        #D05000, //rgb(220, 130, 40),
-  worst2:      #96000A //rgb(150, 0, 0)
+  good2:      #026B02, //rgb(20, 200, 20),
+  medium2:    #DE7600, //rgb(200, 200, 50),
+  bad2:       #D05000, //rgb(220, 130, 40),
+  worst2:     #96000A, //rgb(150, 0, 0)
+  0:          rgb(31, 78, 182),
+  1:          rgb(32, 182, 31),
+  2:          rgb(143, 228, 117),
+  3:          rgb(228, 213, 117),
+  4:          rgb(228, 163, 117),
+  5:          rgb(228, 117, 117)
 );
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
+//czerwony rgb(228, 117, 117)
+//pomarańczowy rgb(228, 163, 117)
+//żółty rgb(228, 213, 117)
+//zielony rgb(143, 228, 117)
+//bardzo zielony rgb(32, 182, 31)
+//Niebieski rgb(31, 78, 182)
 
 
 

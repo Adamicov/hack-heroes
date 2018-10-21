@@ -22,9 +22,8 @@
   <ion-searchbar placeholder="Wpisz miasto..." (ionInput)="getItems($event)"></ion-searchbar>
   <ion-list>
    <button style="background: rgba(255,255,255,0)" ion-item *ngFor="let station of items" (click)="itemTapped($event, station)">
-     <h2>{{station.stationName}}</h2>
-     <h1>{{station.gegrLat}}</h1>
-     <h1>{{station.city.commune.provinceName}}</h1>
+     <h1>{{station.name}}</h1>
+     <h2>{{station.provinceName}}</h2>
    </button>
  </ion-list>
 

@@ -17,9 +17,12 @@ import { AddPage } from '../pages/add/add';
 import { SettingsPage } from '../pages/settings/settings';
 import { RestProvider } from '../providers/rest/rest';
 import { HttpClientModule } from '@angular/common/http';
-import { RankProvider } from '../providers/rank/rank';
-import { IonicStorageModule }from '@ionic/storage';
+//import { IonicStorageModule }from '@ionic/storage';
 import { TestPage } from '../pages/test/test';
+import { FavouritesService } from '../providers/FavouritesService/favourites-service';
+import { StationService } from '../providers/station-service/station-service';
+import { MyStationPage } from '../pages/my-station/my-station';
+import { HaversineProvider } from '../providers/haversine/haversine';
 
 @NgModule({
   declarations: [
@@ -31,12 +34,13 @@ import { TestPage } from '../pages/test/test';
     SearchPage,
     StationDetailsPage,
     AddPage,
-    TestPage
+    TestPage,
+    MyStationPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot(),
+  //  IonicStorageModule.forRoot(),
     HttpClientModule
   ],
   bootstrap: [IonicApp],
@@ -49,7 +53,8 @@ import { TestPage } from '../pages/test/test';
     SearchPage,
     StationDetailsPage,
     AddPage,
-    TestPage
+    TestPage,
+    MyStationPage
   ],
   providers: [
     StatusBar,
@@ -57,9 +62,12 @@ import { TestPage } from '../pages/test/test';
     GeograbberService,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RankProvider,
-    RestProvider
-    
+    //Storage
+    RestProvider,
+    StationService,
+    HaversineProvider,
+    FavouritesService
+
   ]
 })
 export class AppModule {}

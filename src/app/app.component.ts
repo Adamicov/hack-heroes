@@ -10,6 +10,7 @@ import {RankPage} from '../pages/rank/rank';
 import {SearchPage} from '../pages/search/search';
 import { StationDetailsPage } from '../pages/station-details/station-details';
 import { TestPage } from '../pages/test/test';
+import { MyStationPage } from '../pages/my-station/my-station';
 
 @Component({templateUrl : 'app.html'})
 export class MyApp {
@@ -25,6 +26,7 @@ export class MyApp {
     this.initializeApp();
 
     this.pages = [
+      {title: 'Moja Okolica', component: MyStationPage, icon: 'home'},
       {title : 'Ulubione', component : FavouritesPage, icon : 'heart'},
       {title : 'Mapa', component : MapPage, icon : 'map'},
       {title : 'Ranking', component : RankPage, icon : 'podium'},
@@ -49,4 +51,3 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 }
-

@@ -51,7 +51,9 @@ export class RestProvider {
 
   getTab=function(){
     let theese:RestProvider=this;
+    return new Promise(resolve=>{
     this.getStations().then(data=> {
+    	 
           let stations=data;
           let stationsObjTab:StationObj[]=[];
           let wyslane=0;
@@ -89,21 +91,21 @@ export class RestProvider {
                state.pollutions = polutions;
                state.station=stations[i];
                stationsObjTab.push(state);
-               if(datas.length==stations.length){
+               if(stationsObjTab.length==stations.length){
                    //console.log(datas);
-                  resolve (datas)
+                  resolve (stationsObjTab)
                }
                });
-            
+           		 if(i-10>stations.length)
+               		 resolve (stationsObjTab);
                 
               }
               //console.log(stationsObjTab);
-              if(i-10>stations.length)
-                return stationsObjTab;
+              
           }
-      
+     
     );
-    
+     });
   }
 
 
@@ -155,11 +157,11 @@ export class RestProvider {
                   resolve (datas)
                 }
                  });
-                
-                  
-              }
                  if(i>stations.length+10){
                   resolve (datas)
+                  
+              }
+                
         }
       
         });

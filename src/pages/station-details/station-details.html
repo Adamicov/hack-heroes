@@ -14,18 +14,29 @@
 
 
 <ion-content class="bg">
-  <h2 text-center *ngIf="selectedItem">{{selectedItem.stationName}}</h2>
+  <h2 text-center *ngIf="selectedItem">{{selectedItem.name}}</h2>
+  <ion-card text-center>
+    <ion-card-header>
+      Jakość Powietrza
+    </ion-card-header>
+    <ion-card-content>
+      <div>JAKOŚĆ</div>
+    </ion-card-content>
+  </ion-card>
   <button ion-button block color="light">Dodaj do ulubionych</button>
   <ion-card>
     <ion-card-header text-center>
       Zanieczyszczenia
     </ion-card-header>
     <ion-card-content margin-left>
-      <div>PM10:</div>
-      <div>PM2.5:</div>
-      <div>SO2:</div>
-      <div>CO2:</div>
-      <div>CO:</div>
+      <ion-list *ngFor="let type of selectedItem.pollutions">
+        <ion-grid>
+          <ion-row>
+              <ion-col text-left>{{type.paramFormula}}:</ion-col>
+              <ion-col text-right> {{type.value}}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-list>
     </ion-card-content>
   </ion-card>
 </ion-content>

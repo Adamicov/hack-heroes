@@ -1,1 +1,15 @@
-http://jbt.github.io/markdown-editor/?fbclid=IwAR0Y1xlMh_fwheyNvJX8va0X7G3b9BeBl_MmEdqDsgSmDD3PjJCPZ0joYRs#jVNLT9wwEL7nV4zUS5GWpLS0h16qhT5Y0Aqk0qoF9eC1vbvOw2PZDsE+IqH+BsrP2Cu3Jf+r4yxbrr0kjufxPWbyAk5UA6V0Xvb3TfiQZcfbM0TpDPY3soEKa7lYr7oRVH69soEvwTBXPt4CCqiZHxqA0nO0DfOhYjl84/HxzkUeGXXqnFmvaq0kCAQvFwiONelVKy7bBjo4TNke+RI7JXNIJMAjiJqBZg6MkrZzMYCxWMrKb5r4YNoR+A5tRE0oIGzbP4SEsw/o1qtZnmXZC2oeNhrBM2CmVhXjJSOt2el1mDLSazfhbYyEuae2dOwIjS811rhQCi4nqBX/9XLpvXHvi0Klz7klPVRQ5RybYgdKVuE/rhXqqrUOu0BaYDKZwCcRCORuG2nhiPHqSFqULodzSR6S6UmiRR61LEGmAgWz0N8EEExLMO2MzKPgiPiRRUmisTEYJqp2kyLQB5rCLZcDn/6eKzDJX28jo9OMTE15ES7HZxP4Mjnt/+y2G2UkbJsq84VCly/wKjd1YUpTcNReal8wo3ZyyMZbR4mAjBRoSwlpEL7CTit6qP8gNAIgNpXSC5JT8hicJ1G0aY2iCY0oMXaM1qELLraV6tjjbxoSwUpAyyJEqhL4fE320g2Z1D84wsxhiv0D5eokvVmvOFG87xQT2CiqqVsRFTajxAwUraJPJhM5rZF8p4yBkoRnW9JqHVN2ZEoTZD2A01bt5XB5Nrgbn9dEWHVFTiIuajksyXBRtMWrYo61kNYVe2+m89m745Pr8cfD3b2p/nphvsfu7Y/z5uDn7uf9g3one53DxRNaW6Ztch3S/9taUijIetXSNMdaWFRCNn8B
+# Kim jesteśmy?
+
+Jesteśmy zespołem kolegów, których pasją od lat jest informatyka. Uczęszczamy wspólnie do tego samego liceum w Częstochowie. Jest to dla nas pierwszy projekt tego typu, tworzony w drużynie 4 osób.
+
+
+# Czym jest ta aplikacja?
+
+
+OxyMaster jest aplikacją stworzoną w technologii [Ionic](https://ionicframework.com/) jako projekt konkursowy na III Edycję konkursu HackHeroes. Tematem tegorocznej edycji były dane publiczne, w naszym przypadku dane dotyczące jakości powietrza pobierane z [API GIOŚ-u](http://powietrze.gios.gov.pl/pjp/content/api). 
+Aplikacja prezentuje użytkownikowi dane dotyczące jakości powietrza,  ranking najczystszych miast, pozwala wyszukiwać stacje oraz znajdować stację najbliższą. Może ona pomóc uświadomić ludziom, jak istotne powinno być czyste powietrze.
+
+# Jak zainstalować?
+
+1. [Pobierz](https://drive.google.com/drive/u/0/folders/13Mfb6JKxADC-1MnSZpVzw5XTmBY-F4Bl)
+2. Zainstaluj na swoim urządzeniu z Androidem

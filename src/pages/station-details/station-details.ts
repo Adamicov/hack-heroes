@@ -21,7 +21,7 @@ export class StationDetailsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public qualityProvider: QualityProvider){
     this.selectedItem = navParams.get('item');
-    this.colors = ['bardzo dobra', 'dobra', 'umiarkowana', 'zła', 'bardzo zła', 'tragiczna'];
+    this.colors = ['Bardzo Dobra', 'Dobra', 'Umiarkowana', 'Zła', 'Bardzo Zła', 'Tragiczna'];
     this.color = this.qualityProvider.AirQuality(this.selectedItem);
   }
 

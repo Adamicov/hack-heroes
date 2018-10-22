@@ -14,9 +14,11 @@ import 'rxjs/operator/map';
 @Injectable()
 export class RestProvider {
   czy:boolean=true;
-  baseUrlApi: string = "http://localhost:8100/pjp-api/rest/station";
+//baseUrlApi: string = "http://jacek.jaap.pl/stations.php/?name=/station";  //on device this url
+  baseUrlApi: string = "http://localhost:8100/pjp-api/rest/station";          //on pc this url
   sensorsUrl: string = '/sensors/';
-  factorUrl: string = 'http://localhost:8100/pjp-api/rest/data/getData/';
+//factorUrl: string = 'http://jacek.jaap.pl/stations.php/?name=/data/getData/';  //on device this url
+  factorUrl: string = 'http://localhost:8100/pjp-api/rest/data/getData/';        //on pc this url
   stations:Station[]=[];
   stationsObjTab: StationObj[]=[];
 
@@ -57,11 +59,12 @@ export class RestProvider {
         for(let i=0;i<this.stationObjTab;i++){
           if(this.stationObjTab[i].id==stationId){
             resolve(this.stationObjTab[i].pollutions);
-            console.log("ok");
+            //console.log("ok");
           }
         }
       });
     });
+
   }
 
   getTab=function(){
@@ -70,7 +73,7 @@ export class RestProvider {
      
       this.getStations().then(data=> {
       	  if(this.stationsObjTab.length==data.length){
-            console.log("szybciej");
+            //console.log("szybciej");
             resolve (this.stationsObjTab);
           }
           let stations=data;
@@ -103,7 +106,7 @@ export class RestProvider {
              state.cityName=stations[i].city.name;
             this.stationsObjTab.push(state);
              if(this.stationsObjTab.length==stations.length){
-               console.log(this.stationsObjTab);
+              // console.log(this.stationsObjTab);
                 resolve (this.stationsObjTab)
              }
              });
@@ -130,9 +133,6 @@ export class RestProvider {
          for(let i=0;i<data.length;i++){
            let pol=new Pollutions(null,null,null,null,null,null,null);
            let state=data[i];
-           
-           let rank=new RankData();
-           rank.name=state.cityName;
            let polTab=state.pollutions;
            for(let j=0;j<polTab.length;j++){
              pol[polTab[j].paramFormula]=polTab[j].value;

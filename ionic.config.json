@@ -9,6 +9,7 @@
       "path": "/pjp-api/",
       "proxyUrl": "http://api.gios.gov.pl/pjp-api/"
     }
+	
   ]
 }
 

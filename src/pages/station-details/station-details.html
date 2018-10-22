@@ -15,7 +15,7 @@
 
 <ion-content class="bg">
   <h2 text-center *ngIf="selectedItem">{{selectedItem.name}}</h2>
-  <ion-card text-center>
+  <ion-card text-center color="{{color}}">
     <ion-card-header>
       Jakość Powietrza
     </ion-card-header>
@@ -28,7 +28,7 @@
     <ion-card-header text-center>
       Zanieczyszczenia
     </ion-card-header>
-    <ion-card-content margin-left>
+    <ion-card-content margin-left *ngIf="selectedItem" >
       <ion-list *ngFor="let type of selectedItem.pollutions">
         <ion-grid>
           <ion-row>

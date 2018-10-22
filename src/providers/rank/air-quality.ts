@@ -1,3 +1,5 @@
+
+
 function AirQuality(name, val){
   let q;
   if(name=='PM10'){

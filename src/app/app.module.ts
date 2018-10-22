@@ -14,7 +14,6 @@ import { RankPage } from '../pages/rank/rank';
 import { SearchPage } from '../pages/search/search';
 import { StationDetailsPage } from '../pages/station-details/station-details';
 import { AddPage } from '../pages/add/add';
-import { SettingsPage } from '../pages/settings/settings';
 import { RestProvider } from '../providers/rest/rest';
 import { HttpClientModule } from '@angular/common/http';
 //import { IonicStorageModule }from '@ionic/storage';

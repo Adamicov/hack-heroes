@@ -14,11 +14,11 @@ import 'rxjs/operator/map';
 @Injectable()
 export class RestProvider {
   czy:boolean=true;
-//baseUrlApi: string = "http://jacek.jaap.pl/stations.php/?name=/station";  //on device this url
-  baseUrlApi: string = "http://localhost:8100/pjp-api/rest/station";          //on pc this url
+baseUrlApi: string = "http://jacek.jaap.pl/stations.php/?name=/station";  //on device this url
+  //baseUrlApi: string = "http://localhost:8100/pjp-api/rest/station";          //on pc this url
   sensorsUrl: string = '/sensors/';
-//factorUrl: string = 'http://jacek.jaap.pl/stations.php/?name=/data/getData/';  //on device this url
-  factorUrl: string = 'http://localhost:8100/pjp-api/rest/data/getData/';        //on pc this url
+factorUrl: string = 'http://jacek.jaap.pl/stations.php/?name=/data/getData/';  //on device this url
+ // factorUrl: string = 'http://localhost:8100/pjp-api/rest/data/getData/';        //on pc this url
   stations:Station[]=[];
   stationsObjTab: StationObj[]=[];
 

@@ -29,11 +29,12 @@ export class RestProvider {
       if(this.stations.length>0){
         resolve(this.stations);
       }
+      else{
       this.http.get(this.baseUrlApi + '/findAll').subscribe((data : Station[]) => {
         this.stations=data;
         resolve(data);
       }, err => console.log(err));
-
+      }
     });
   }
 
@@ -76,6 +77,7 @@ export class RestProvider {
             //console.log("szybciej");
             resolve (this.stationsObjTab);
           }
+         else{
           let stations=data;
           for (let i = 0; i < stations.length; i++){
             let station = stations[i];
@@ -116,7 +118,7 @@ export class RestProvider {
             }
               
           }
-     
+      }
     );
      });
   }
@@ -128,6 +130,7 @@ export class RestProvider {
        if(this.datas.length>0){
          resolve(this.datas);
        }
+      else{
        this.getTab().then(data=>{
          
          for(let i=0;i<data.length;i++){
@@ -141,6 +144,7 @@ export class RestProvider {
          }
          resolve(this.datas);
        });
+      }
     });
   }
 }

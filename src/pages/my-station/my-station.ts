@@ -7,6 +7,7 @@ import { RestProvider } from '../../providers/rest/rest';
 import { HaversineProvider } from '../../providers/haversine/haversine';
 import { Pollutions } from '../../models/pollutions';
 import { QualityProvider } from '../../providers/quality/quality';
+import { LoadingController } from 'ionic-angular';
 
 /**
  * Generated class for the MyStationPage page.
@@ -28,7 +29,7 @@ export class MyStationPage {
   colors: any;
   color: any;
 
-  constructor(public navCtrl: NavController,public qualityProvider: QualityProvider, public navParams: NavParams, public geolocation: Geolocation, public restProvider: RestProvider, public haversineService: HaversineProvider) {
+  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController,public qualityProvider: QualityProvider, public navParams: NavParams, public geolocation: Geolocation, public restProvider: RestProvider, public haversineService: HaversineProvider) {
 
     this.colors = ['bardzo dobra', 'dobra', 'umiarkowana', 'zła', 'bardzo zła', 'tragiczna'];
 
@@ -53,8 +54,6 @@ export class MyStationPage {
        })
     })
 
-    console.log(this.station);
-    //this.color =  this.qualityProvider.AirQuality(this.station);
   }
 
   getNearestStation(){

@@ -5,7 +5,7 @@ import {GeoCoord} from '../../providers/haversine/geocoord';
 import { StationObj } from '../../models/stationObj';
 import { RestProvider } from '../../providers/rest/rest';
 import { HaversineProvider } from '../../providers/haversine/haversine';
-import { Pollutions } from '../../models/pollutions';
+import {Polution} from '../../models/polution';
 
 /**
  * Generated class for the MyStationPage page.
@@ -22,7 +22,7 @@ import { Pollutions } from '../../models/pollutions';
 export class MyStationPage {
 
   stations: StationObj[] = [];
-  pollution: Pollutions[];
+  pollution: Polution[];
   station: StationObj;
   constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation, public restProvider: RestProvider, public haversineService: HaversineProvider) {
     this.restProvider.getTab().then((data: StationObj[]) => {
@@ -40,7 +40,7 @@ export class MyStationPage {
             this.station = state;
           }
         }
-        this.restProvider.getSingleStation(this.station.id).then((data: Pollutions[]) => {
+        this.restProvider.getSingleStation(this.station.id).then((data: Polution[]) => {
           this.pollution = data;
          })
        })

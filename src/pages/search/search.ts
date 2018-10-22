@@ -23,15 +23,18 @@ export class SearchPage {
   items: any;
 
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
+    const loader = this.loadingCtrl.create({
+      content: "Właśnie pobierane są najświeższe informacje!",
+    });
+    loader.present();
+
       this.restProvider.getTab()
       .then((data: StationObj[]) => {
         this.stations = data;
+        loader.dismissAll();
+      
       });
-      const loader = this.loadingCtrl.create({
-      content: "Proszę czekać...",
-      duration: 3000
-    });
-    loader.present();
+    
   }
 
   initializeItems() {

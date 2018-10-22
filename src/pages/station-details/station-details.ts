@@ -17,9 +17,11 @@ import { QualityProvider } from '../../providers/quality/quality';
 export class StationDetailsPage {
   selectedItem: any;
   color: any;
+  colors: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public qualityProvider: QualityProvider){
     this.selectedItem = navParams.get('item');
+    this.colors = ['bardzo dobra', 'dobra', 'umiarkowana', 'zła', 'bardzo zła', 'tragiczna'];
     this.color = this.qualityProvider.AirQuality(this.selectedItem);
   }
 

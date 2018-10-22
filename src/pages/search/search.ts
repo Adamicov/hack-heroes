@@ -22,11 +22,16 @@ export class SearchPage {
   stations: any;
   items: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
+  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
       this.restProvider.getTab()
       .then((data: StationObj[]) => {
         this.stations = data;
       });
+      const loader = this.loadingCtrl.create({
+      content: "Proszę czekać...",
+      duration: 3000
+    });
+    loader.present();
   }
 
   initializeItems() {

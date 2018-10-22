@@ -17,7 +17,7 @@ export class MyApp {
 
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = FavouritesPage;
+  rootPage: any = SearchPage;
   pages: Array<{title : string, component: any, icon: string}>;
 
   constructor(public platform: Platform, public menu: MenuController,
@@ -27,7 +27,7 @@ export class MyApp {
 
     this.pages = [
       {title: 'Moja Okolica', component: MyStationPage, icon: 'home'},
-      {title : 'Ulubione', component : FavouritesPage, icon : 'heart'},
+    //  {title : 'Ulubione', component : FavouritesPage, icon : 'heart'},
       {title : 'Mapa', component : MapPage, icon : 'map'},
       {title : 'Ranking', component : RankPage, icon : 'podium'},
       {title : 'Szukaj', component : SearchPage, icon : 'search'},

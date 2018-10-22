@@ -5,7 +5,8 @@ import {GeoCoord} from '../../providers/haversine/geocoord';
 import { StationObj } from '../../models/stationObj';
 import { RestProvider } from '../../providers/rest/rest';
 import { HaversineProvider } from '../../providers/haversine/haversine';
-import {Polution} from '../../models/polution';
+import { Pollutions } from '../../models/pollutions';
+import { QualityProvider } from '../../providers/quality/quality';
 
 /**
  * Generated class for the MyStationPage page.
@@ -22,9 +23,15 @@ import {Polution} from '../../models/polution';
 export class MyStationPage {
 
   stations: StationObj[] = [];
-  pollution: Polution[];
+  pollution: Pollutions[];
   station: StationObj;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation, public restProvider: RestProvider, public haversineService: HaversineProvider) {
+  colors: any;
+  color: any;
+
+  constructor(public navCtrl: NavController,public qualityProvider: QualityProvider, public navParams: NavParams, public geolocation: Geolocation, public restProvider: RestProvider, public haversineService: HaversineProvider) {
+
+    this.colors = ['bardzo dobra', 'dobra', 'umiarkowana', 'zła', 'bardzo zła', 'tragiczna'];
+
     this.restProvider.getTab().then((data: StationObj[]) => {
       this.stations = data;
       this.station = this.stations[0];
@@ -40,11 +47,14 @@ export class MyStationPage {
             this.station = state;
           }
         }
-        this.restProvider.getSingleStation(this.station.id).then((data: Polution[]) => {
+        this.restProvider.getSingleStation(this.station.id).then((data: Pollutions[]) => {
           this.pollution = data;
          })
        })
     })
+
+    console.log(this.station);
+    //this.color =  this.qualityProvider.AirQuality(this.station);
   }
 
   getNearestStation(){

@@ -26,18 +26,22 @@ export class MapPage {
     'PM_10','PM_25','NO2','SO3','SO2','O3','C6H6'
   ];
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public alertCtrl: AlertController) {
-  	
+  	this.pollutionmap = null;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MapPage');
     this.restProvider.getTab().then((data:StationObj[]) => {
       this.stations = data;
+      this.loadMap();
       this.displayMarkers();
     })
-    this.loadMap();
-    
-    
+  }
+
+  ionViewWillLeave() {
+    console.log('ionViewWillLeave MapPage');
+    this.pollutionmap.off();
+    this.pollutionmap.remove();
   }
 
   loadMap() {
@@ -82,7 +86,7 @@ export class MapPage {
     for(var i = 0; i < this.stations.length; i++) {
       let station = this.stations[i];
 
-      let marker: any = leaflet.marker([station.latitude, station.longitude], {icon: redIcon}).on('click', () => {
+      let marker: any = leaflet.marker([station.latitude, station.longitude], {icon: greenIcon}).on('click', () => {
         let alert = this.alertCtrl.create({
           title: `Stacja ${station.name}`,
           subTitle: `<p>Dane o stacji:</p>

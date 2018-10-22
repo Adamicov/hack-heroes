@@ -22,7 +22,6 @@ export class MapPage {
   @ViewChild('pollutionmap') mapContainer: ElementRef;
   pollutionmap: any;
   stations: any;
-  didLoadMap: bool = false;
   typesOfPollutions: string[] = [
     'PM_10','PM_25','NO2','SO3','SO2','O3','C6H6'
   ];

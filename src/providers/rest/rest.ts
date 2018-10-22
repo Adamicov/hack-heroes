@@ -14,11 +14,11 @@ import 'rxjs/operator/map';
 @Injectable()
 export class RestProvider {
   czy:boolean=true;
-  baseUrlApi: string = "http://jacek.jaap.pl/stations.php/?name=/station";  //on device this url
-  //baseUrlApi: string = "http://localhost:8100/pjp-api/rest/station";          //on pc this url
+//  baseUrlApi: string = "http://jacek.jaap.pl/stations.php/?name=/station";  //on device this url
+  baseUrlApi: string = "http://localhost:8100/pjp-api/rest/station";          //on pc this url
   sensorsUrl: string = '/sensors/';
-  factorUrl: string = 'http://jacek.jaap.pl/stations.php/?name=/data/getData/';  //on device this url
- // factorUrl: string = 'http://localhost:8100/pjp-api/rest/data/getData/';        //on pc this url
+//  factorUrl: string = 'http://jacek.jaap.pl/stations.php/?name=/data/getData/';  //on device this url
+  factorUrl: string = 'http://localhost:8100/pjp-api/rest/data/getData/';        //on pc this url
   stations:Station[]=[];
   stationsObjTab: StationObj[]=[];
 
@@ -38,15 +38,15 @@ export class RestProvider {
     });
   }
 
-  getMeasurementTab(stationId: any){ // get tables of coefficient 
+  getMeasurementTab(stationId: any){ // get tables of coefficient
     return new Promise(resolve => {
       this.http.get(this.baseUrlApi + this.sensorsUrl + stationId).subscribe(data => {
         resolve(data);
-      }), err => console.log(err); 
+      }), err => console.log(err);
     })
   }
 
-  getProper(factorId: any){ // get factor by 
+  getProper(factorId: any){ // get factor by
     return new Promise(resolve => {
       this.http.get(this.factorUrl + factorId).subscribe(data => {
         resolve(data);
@@ -71,7 +71,7 @@ export class RestProvider {
   getTab=function(){
     let theese:RestProvider=this;
     return new Promise(resolve=>{
-     
+
       this.getStations().then(data=> {
       	  if(this.stationsObjTab.length==data.length){
             //console.log("szybciej");
@@ -88,7 +88,7 @@ export class RestProvider {
             state.longitude = station.gegrLon;
             theese.getMeasurementTab(station.id).then(data => {
                 let measureTabs:any = data;
-                let polutions: Polution[] = []; 
+                let polutions: Polution[] = [];
                 for (let j = 0; j < measureTabs.length; j++){
                     let provide = measureTabs[j];
                     theese.getProper(provide.id).then(data =>{
@@ -97,7 +97,7 @@ export class RestProvider {
                       for (let k = 0; k < tempArray.length; k++){
                         if (tempArray[k].value != null){
                           polutions.push(new Polution (provide.param.paramFormula, tempArray[k].value));
-                          
+
                           break;
                         }
                       }
@@ -114,9 +114,9 @@ export class RestProvider {
              });
          		 if(i-10>stations.length)
              		 resolve (this.stationsObjTab);
-              
+
             }
-              
+
           }
       }
     );
@@ -132,7 +132,7 @@ export class RestProvider {
        }
       else{
        this.getTab().then(data=>{
-         
+
          for(let i=0;i<data.length;i++){
            let pol=new Pollutions(null,null,null,null,null,null,null);
            let state=data[i];

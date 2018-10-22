@@ -57,7 +57,6 @@ export class MapPage {
       id: 'thunderforest.neighbourhood',
       accessToken: '592228c77796498ca12ddeb55ed31b85'
     }).addTo(this.pollutionmap);
-    this.didLoadMap = true;
   }
 
   displayMarkers() {

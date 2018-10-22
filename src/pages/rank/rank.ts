@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { RestProvider } from '../../providers/rest/rest'
+import { RestProvider } from '../../providers/rest/rest';
+import { LoadingController } from 'ionic-angular';
 
 import { RankData } from '../../models/rankData';
 import { DataCell } from '../../models/dataCell';
@@ -32,9 +33,10 @@ export class RankPage {
   typesOfPollutions: string[] = [
     'PM10','PM2.5','NO2','CO','SO2','O3','C6H6'
   ];
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
+  
+  constructor(public loadingController:LoadingController,public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
+
     this.restProvider.stationRank().then((value:RankData[])=>{
-      //console.log("ok");
       this.rankDatas=value;
       this.createChart();
       this.czy=true;
@@ -57,10 +59,10 @@ export class RankPage {
     this.data=[];
 
     let tempArray: DataCell[]=[];
-    console.log(this.rankDatas);
+   // console.log(this.rankDatas);
     for(let i=0;i<this.rankDatas.length;i++){
       if(this.rankDatas[i].pollutions[this.choosenType]!=null){
-        tempArray.push({name: this.rankDatas[i].station.city.name,number: this.rankDatas[i].pollutions[this.choosenType]});
+        tempArray.push({name: this.rankDatas[i].name,number: this.rankDatas[i].pollutions[this.choosenType]});
       }
       
 

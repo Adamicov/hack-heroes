@@ -7,7 +7,6 @@ import { StationDetailsPage } from '../station-details/station-details';
 
 @NgModule({
   declarations: [
-    FavouritesPage,
   ],
   imports: [
     IonicPageModule.forChild(FavouritesPage),

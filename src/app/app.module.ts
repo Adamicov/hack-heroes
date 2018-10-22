@@ -67,8 +67,10 @@ import { QualityProvider } from '../providers/quality/quality';
     RestProvider,
     StationService,
     HaversineProvider,
+
     FavouritesService,
     QualityProvider
+
 
   ]
 })

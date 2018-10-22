@@ -8,6 +8,7 @@ import { HaversineProvider } from '../../providers/haversine/haversine';
 import { Polution } from '../../models/polution';
 import { QualityProvider } from '../../providers/quality/quality';
 import { LoadingController } from 'ionic-angular';
+import { StationDetailsPage } from '../station-details/station-details';
 
 /**
  * Generated class for the MyStationPage page.
@@ -86,5 +87,9 @@ export class MyStationPage {
     return this.haversineService.getDistanceInMeters(my, stat);
   }
 
+
+  itemTapped(event, item) {
+    this.navCtrl.push(StationDetailsPage, {item: item});
+  }
 
 }

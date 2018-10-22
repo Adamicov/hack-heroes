@@ -31,8 +31,8 @@ export class MyApp {
       {title : 'Mapa', component : MapPage, icon : 'map'},
       {title : 'Ranking', component : RankPage, icon : 'podium'},
       {title : 'Szukaj', component : SearchPage, icon : 'search'},
-      {title : 'O nas!', component : AboutPage, icon : 'information-circle'},
-      {title : 'TestPage', component: TestPage, icon: 'infinite'}
+      {title : 'O nas!', component : AboutPage, icon : 'information-circle'}
+      //{title : 'TestPage', component: TestPage, icon: 'infinite'}
     ];
   }
   initializeApp() {

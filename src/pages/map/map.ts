@@ -22,27 +22,33 @@ export class MapPage {
   @ViewChild('pollutionmap') mapContainer: ElementRef;
   pollutionmap: any;
   stations: any;
+  didLoadMap: bool = false;
   typesOfPollutions: string[] = [
     'PM_10','PM_25','NO2','SO3','SO2','O3','C6H6'
   ];
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public alertCtrl: AlertController) {
-  	this.pollutionmap = null;
+  	//this.pollutionmap = null;
+    
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
+    this.loadMap();
     console.log('ionViewDidLoad MapPage');
     this.restProvider.getTab().then((data:StationObj[]) => {
       this.stations = data;
-      this.loadMap();
       this.displayMarkers();
-    })
+    });
   }
 
-  ionViewWillLeave() {
+  ionViewCanLeave() {
+    document.getElementById("pollutionmap").outerHTML = "";
+  }
+
+  /*ionViewWillLeave() {
     console.log('ionViewWillLeave MapPage');
     this.pollutionmap.off();
     this.pollutionmap.remove();
-  }
+  }*/
 
   loadMap() {
     this.pollutionmap = leaflet.map("pollutionmap").setView([50.815941, 19.117404], 13);
@@ -52,6 +58,7 @@ export class MapPage {
       id: 'thunderforest.neighbourhood',
       accessToken: '592228c77796498ca12ddeb55ed31b85'
     }).addTo(this.pollutionmap);
+    this.didLoadMap = true;
   }
 
   displayMarkers() {

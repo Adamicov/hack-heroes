@@ -23,18 +23,19 @@ export class SearchPage {
   items: any;
 
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
-    const loader = this.loadingCtrl.create({
-      content: "Właśnie pobierane są najświeższe informacje!",
-    });
-    loader.present();
+    if(this.restProvider.czy){
+       const loader = this.loadingCtrl.create({
+            content: "Właśnie pobierane są najświeższe informacje!",
+         });
+        loader.present();
 
-      this.restProvider.getTab()
-      .then((data: StationObj[]) => {
-        this.stations = data;
-        loader.dismissAll();
-      
+       this.restProvider.getTab()
+       .then((data: StationObj[]) => {
+            this.stations = data;
+             loader.dismissAll();
       });
-    
+      this.restProvider.czy=false;
+    }
   }
 
   initializeItems() {

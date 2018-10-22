@@ -25,12 +25,12 @@ export class MyStationPage {
 
   stations: StationObj[] = [];
   pollution: Polution[];
-  station: StationObj;
+  station: StationObj=new StationObj();
   colors: any;
   color: any;
 
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController,public qualityProvider: QualityProvider, public navParams: NavParams, public geolocation: Geolocation, public restProvider: RestProvider, public haversineService: HaversineProvider) {
-
+    this.station.name="Proszę chwilkę poczekać";
     this.colors = ['Bardzo Dobra', 'Dobra', 'Umiarkowana', 'Zła', 'Bardzo Zła', 'Tragiczna'];
 
     this.restProvider.getTab().then((data: StationObj[]) => {

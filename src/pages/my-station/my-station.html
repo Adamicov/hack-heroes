@@ -19,27 +19,18 @@
 
 
 <ion-content class="bg" padding>
-  <div text-center>Długość geogr., Szerokość geogr.</div>
   <p text-center>{{station.name}}</p>
-  <ion-card text-center>
-    <ion-card-header>
-      Jakość Powietrza
-    </ion-card-header>
-    <ion-card-content>
-      <div>JAKOŚĆ</div>
-    </ion-card-content>
-  </ion-card>
-  <button ion-button block color="light">Dodaj do ulubionych</button>
+
   <ion-card>
     <ion-card-header text-center>
       Zanieczyszczenia
     </ion-card-header>
     <ion-card-content margin-left>
-      <ion-list>
+      <ion-list *ngFor="let type of station.pollutions">
         <ion-grid>
           <ion-row>
-              <ion-col text-left>type.paramFormula}}:</ion-col>
-              <ion-col text-right>type.value}}</ion-col>
+              <ion-col text-left>{{type.paramFormula}}:</ion-col>
+              <ion-col text-right>{{type.value}}</ion-col>
           </ion-row>
         </ion-grid>
       </ion-list>

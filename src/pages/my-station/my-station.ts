@@ -31,7 +31,7 @@ export class MyStationPage {
 
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController,public qualityProvider: QualityProvider, public navParams: NavParams, public geolocation: Geolocation, public restProvider: RestProvider, public haversineService: HaversineProvider) {
 
-    this.colors = ['bardzo dobra', 'dobra', 'umiarkowana', 'zła', 'bardzo zła', 'tragiczna'];
+    this.colors = ['Bardzo Dobra', 'Dobra', 'Umiarkowana', 'Zła', 'Bardzo Zła', 'Tragiczna'];
 
     this.restProvider.getTab().then((data: StationObj[]) => {
       this.stations = data;

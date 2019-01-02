@@ -1,6 +1,6 @@
 # Kim jesteśmy?
 
-Jesteśmy zespołem kolegów, których pasją od lat jest informatyka. Uczęszczamy wspólnie do tego samego liceum w Częstochowie. Jest to dla nas pierwszy projekt tego typu, tworzony w drużynie 4 osób.
+Jesteśmy  zespołem kolegów, których pasją od lat jest informatyka. Uczęszczamy wspólnie do tego samego liceum w Częstochowie. Jest to dla nas pierwszy projekt tego typu, tworzony w drużynie 4 osób.
 
 
 # Czym jest ta aplikacja?

@@ -36,10 +36,21 @@ export class SearchPage {
       });
       this.restProvider.czy=false;
     }
+    else{
+    	this.restProvider.getTab()
+       .then((data: StationObj[]) => {
+            this.stations = data;
+      	});
+    }
   }
 
   initializeItems() {
-  this.items = this.stations.slice();
+  	if(this.stations){
+  		this.items = this.stations.slice();
+  	}
+  	else{
+  		this.items=null;
+  	}
 }
 
   ionViewDidLoad() {
@@ -55,12 +66,16 @@ export class SearchPage {
     const val = ev.target.value;
 
     // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
-      this.items = this.items.filter((item) => {
-        return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-    }
-  }
+
+    if (this.items && val && val.trim() != '') {
+
+      if (val && val.trim() != '') {
+
+       this.items = this.items.filter((item) => {
+         return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+       })
+     }
+   }
 
   itemTapped(event, item) {
     this.navCtrl.push(StationDetailsPage, {item: item});

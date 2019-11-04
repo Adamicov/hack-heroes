@@ -30,7 +30,7 @@ export class RestProvider {
         resolve(this.stations);
       }
       else{
-      this.http.get(this.baseUrlApi + '/findAll').subscribe((data : Station[]) => {
+        this.http.get(this.baseUrlApi + '/findAll').subscribe((data : Station[]) => {
         this.stations=data;
         resolve(data);
       }, err => console.log(err));
@@ -83,7 +83,12 @@ export class RestProvider {
             let station = stations[i];
             let state:StationObj=new StationObj;
             state.name = station.stationName;
-            state.provinceName = station.city.commune.provinceName;
+            if(station.city){
+              state.provinceName = station.city.commune.provinceName;
+            }
+            else{
+              state.provinceName=null;
+            }
             state.latitude = station.gegrLat;
             state.longitude = station.gegrLon;
             theese.getMeasurementTab(station.id).then(data => {
@@ -97,7 +102,6 @@ export class RestProvider {
                       for (let k = 0; k < tempArray.length; k++){
                         if (tempArray[k].value != null){
                           polutions.push(new Polution (provide.param.paramFormula, tempArray[k].value));
-
                           break;
                         }
                       }
@@ -105,18 +109,20 @@ export class RestProvider {
                 }
              state.pollutions = polutions;
              state.id=stations[i].id;
-             state.cityName=stations[i].city.name;
+             if(stations[i].city){
+               state.cityName=stations[i].city.name;
+             }
+             else{
+               state.cityName=state.name;
+             }
             this.stationsObjTab.push(state);
              if(this.stationsObjTab.length==stations.length){
-              // console.log(this.stationsObjTab);
                 resolve (this.stationsObjTab)
              }
              });
          		 if(i-10>stations.length)
              		 resolve (this.stationsObjTab);
-
             }
-
           }
       }
     );

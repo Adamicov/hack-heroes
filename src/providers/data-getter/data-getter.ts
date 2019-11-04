@@ -34,16 +34,17 @@ export class DataGetterProvider {
   };
   
   getTab(){
-  		let stations=this.getStations().then(data=> {this.stations=data;
-		let stationsObjTab=this.stationsObjTab;
-		let restProvider=this.restProvider;	
-		console.log("ok");
-		console.log(this.stations);
-   		 var def = new Promise(resolve=>{
-    		console.log(this.stations);
-		    
+		let stations=this.getStations().then(data=> {
+			this.stations=data;
+			let stationsObjTab=this.stationsObjTab;
+			let restProvider=this.restProvider;	
+
+			 	var def = new Promise(resolve=>{
+				console.log(this.stations);
+			    
 		    	for (let i = 0; i < this.stations.length; i++){
 				    let station = this.stations[i];
+
 				    let state:StationObj=new StationObj;
 				    state.name = station.stationName;
 				    state.provinceName = station.city.commune.provinceName;
@@ -67,18 +68,12 @@ export class DataGetterProvider {
 					            }
 				          	});
 				        }
-			       state.pollutions = polutions;
-			       stationsObjTab.push(state);
+				       state.pollutions = polutions;
+				       stationsObjTab.push(state);
 			  	   });
-			    
-			        
-		      	}
-		    }
-			
-		);
-
-		return def;
-		
-  })
+		  		}
+			});
+			return def;
+		})
 	}
 }

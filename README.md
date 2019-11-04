@@ -11,6 +11,6 @@ Aplikacja prezentuje użytkownikowi dane dotyczące jakości powietrza,  ranking
 
 # Jak zainstalować?
 
-1. [Pobierz](https://drive.google.com/drive/u/0/folders/13Mfb6JKxADC-1MnSZpVzw5XTmBY-F4Bl)
+1. [Pobierz](https://drive.google.com/open?id=1j8qgH-cq19yzGbGfuxtADjB_BoQ6DIZf)
 2. Zainstaluj na swoim urządzeniu z Androidem (pamiętaj o kwestiach bezpieczeństwa telefonu, ustaw w telefonie możliwość instalacja obcych aplikacji - [tutaj można znaleźć instrukcje po angielsku](https://tinyurl.com/ustutorial) ).
 Powodzenia !

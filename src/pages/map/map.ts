@@ -1,5 +1,9 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
+import { RestProvider } from '../../providers/rest/rest';
+import { StationDetailsPage } from '../station-details/station-details';
+import { StationObj } from '../../models/stationObj';
 import leaflet from 'leaflet';
 
 /**
@@ -17,15 +21,33 @@ import leaflet from 'leaflet';
 export class MapPage {
   @ViewChild('pollutionmap') mapContainer: ElementRef;
   pollutionmap: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  	
+  stations: any;
+  typesOfPollutions: string[] = [
+    'PM_10','PM_25','NO2','SO3','SO2','O3','C6H6'
+  ];
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public alertCtrl: AlertController) {
+  	//this.pollutionmap = null;
+    
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MapPage');
+  ionViewDidEnter() {
     this.loadMap();
-    this.displayMarkers();
+    console.log('ionViewDidLoad MapPage');
+    this.restProvider.getTab().then((data:StationObj[]) => {
+      this.stations = data;
+      this.displayMarkers();
+    });
   }
+
+  ionViewCanLeave() {
+    document.getElementById("pollutionmap").outerHTML = "";
+  }
+
+  /*ionViewWillLeave() {
+    console.log('ionViewWillLeave MapPage');
+    this.pollutionmap.off();
+    this.pollutionmap.remove();
+  }*/
 
   loadMap() {
     this.pollutionmap = leaflet.map("pollutionmap").setView([50.815941, 19.117404], 13);
@@ -38,20 +60,59 @@ export class MapPage {
   }
 
   displayMarkers() {
-    let markerIcon = leaflet.icon({
+    let greenIcon = leaflet.icon({
+      iconUrl: '/assets/imgs/greenpin.png',
+      shadowUrl: '/assets/imgs/greenpin.png',
+      iconSize:     [16, 16],
+      shadowSize:   [16, 16],
+      iconAnchor:   [8, 8],
+      shadowAnchor: [8, 8],
+      popupAnchor:  [8, 8]
+    });
+    let orangeIcon = leaflet.icon({
+      iconUrl: '/assets/imgs/orangepin.png',
+      shadowUrl: '/assets/imgs/orangepin.png',
+      iconSize:     [16, 16],
+      shadowSize:   [16, 16],
+      iconAnchor:   [8, 8],
+      shadowAnchor: [8, 8],
+      popupAnchor:  [8, 8]
+    });
+    let redIcon = leaflet.icon({
       iconUrl: '/assets/imgs/redpin.png',
       shadowUrl: '/assets/imgs/redpin.png',
-      iconSize:     [45, 95],
-      shadowSize:   [45, 95],
-      iconAnchor:   [22, 95],
-      shadowAnchor: [22, 95],
-      popupAnchor:  [-3, -76]
+      iconSize:     [16, 16],
+      shadowSize:   [16, 16],
+      iconAnchor:   [8, 8],
+      shadowAnchor: [8, 8],
+      popupAnchor:  [8, 8]
     });
     let markerGroup = leaflet.featureGroup();
-    let marker: any = leaflet.marker([50.815941, 19.117404], {icon: markerIcon}).on('click', () => {
-      alert('Temp functionality - add popup or something else');
-    })
-    markerGroup.addLayer(marker);
+    for(var i = 0; i < this.stations.length; i++) {
+      let station = this.stations[i];
+
+      let marker: any = leaflet.marker([station.latitude, station.longitude], {icon: greenIcon}).on('click', () => {
+        let alert = this.alertCtrl.create({
+          title: `Stacja ${station.name}`,
+          subTitle: `<p>Dane o stacji:</p>
+                     ${0 < station.pollutions.length ? `<p>PM<sub>10</sub>: ${station.pollutions[0].value}</p>` : ""}
+                     ${1 < station.pollutions.length ? `<p>PM<sub>25</sub>: ${station.pollutions[1].value}</p>` : ""}
+                     ${2 < station.pollutions.length ? `<p>NO<sub>2</sub>: ${station.pollutions[2].value}</p>` : ""}
+                     ${3 < station.pollutions.length ? `<p>SO<sub>3</sub>: ${station.pollutions[3].value}</p>` : ""}
+                     ${4 < station.pollutions.length ? `<p>SO<sub>2</sub>: ${station.pollutions[4].value}</p>` : ""}
+                     ${5 < station.pollutions.length ? `<p>O<sub>3</sub>: ${station.pollutions[5].value}</p>` : ""}
+                     ${6 < station.pollutions.length ? `<p>C<sub>6</sub>H<sub>6</sub>: ${station.pollutions[6].value}</p>` : ""}`,
+          buttons: [{
+            text: 'Info',
+            handler: ()=> {
+              this.navCtrl.push(StationDetailsPage, {item: station});
+            }},'Powróć']
+        });
+        alert.present();
+      })
+      markerGroup.addLayer(marker);
+    }
+    
     this.pollutionmap.addLayer(markerGroup);
   }
 

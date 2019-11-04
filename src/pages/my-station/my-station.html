@@ -1,0 +1,40 @@
+<!--
+  Generated template for the MyStationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar  color="back">
+    <ion-buttons left>
+        <button ion-button icon-only menuToggle>
+          <ion-icon name="menu" left></ion-icon>
+        </button>
+    </ion-buttons>
+    <ion-title text-center>Moja Okolica</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="bg" padding>
+  <p text-center>{{station.name}}</p>
+  <button ion-button block text-center color="light" (click)="itemTapped($event, station)">Pokaż Szczegóły</button>
+
+  <ion-card>
+    <ion-card-header text-center>
+      Zanieczyszczenia
+    </ion-card-header>
+    <ion-card-content margin-left>
+      <ion-list *ngFor="let type of station.pollutions">
+        <ion-grid>
+          <ion-row>
+              <ion-col text-left>{{type.paramFormula}}:</ion-col>
+              <ion-col text-right>{{type.value}}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

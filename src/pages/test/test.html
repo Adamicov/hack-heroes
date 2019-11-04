@@ -6,7 +6,23 @@
           <ion-icon name="menu" left></ion-icon>
         </button>
     </ion-buttons>
-    <ion-title text-center>Tutaj testuje backend !</ion-title>
+    <ion-title text-center>Testowanie</ion-title>
   </ion-navbar>
 
 </ion-header>
+
+
+<ion-content>
+  <ion-list inset>
+    <ion-item *ngFor="let station of stationsObjTab">
+      <h2>{{station.name}}</h2>
+      <h2>{{station.city}}</h2>
+      <h2>{{station.latitude}}</h2>
+      <h2>{{station.longitude}}</h2>
+    </ion-item>
+    <!-- <ion-item *ngFor="let station of stations">
+      <h2>{{station.stationName}}</h2>
+      <h1>{{station.gegrLat}}</h1>
+      <h1>{{station.city.commune.provinceName}}</h1> -->
+  </ion-list>
+</ion-content>

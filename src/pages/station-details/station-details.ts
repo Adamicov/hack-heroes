@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { RestProvider } from '../../providers/rest/rest'
+import { QualityProvider } from '../../providers/quality/quality';
 
 /**
  * Generated class for the StationDetailsPage page.
@@ -16,15 +16,18 @@ import { RestProvider } from '../../providers/rest/rest'
 })
 export class StationDetailsPage {
   selectedItem: any;
-  stations: any;
+  color: any;
+  colors: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider ) {
-    console.log(this.restProvider.getStations());
+  constructor(public navCtrl: NavController, public navParams: NavParams, public qualityProvider: QualityProvider){
     this.selectedItem = navParams.get('item');
+    this.colors = ['Bardzo Dobra', 'Dobra', 'Umiarkowana', 'Zła', 'Bardzo Zła', 'Tragiczna'];
+    this.color = this.qualityProvider.AirQuality(this.selectedItem);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StationDetailsPage');
   }
+
 
 }

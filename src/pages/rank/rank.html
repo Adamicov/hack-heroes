@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="back">
     <ion-buttons left>
         <button ion-button icon-only menuToggle>
           <ion-icon name="menu" left></ion-icon>
@@ -17,20 +17,36 @@
 
 </ion-header>
 
-
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      Wybierz typ Zanieczyszczeń: 
-    </ion-card-header>
-    <ion-card-content>
-      <ion-select [(ngModel)]="choosenType" (ionChange)="createChart()" >
-          <ion-option  *ngFor="let type of typesOfPollutions"
-          [value]="type" >
-          {{type}}
-        </ion-option>
-      </ion-select>
-    </ion-card-content>
-  </ion-card>
+  <div *ngIf="czy">
+    <ion-card>
+      <ion-card-content>
+        <ion-item>
+          <ion-label> Wybierz typ Zanieczyszczeń: </ion-label>
+
+          <ion-select [(ngModel)]="choosenType" (ionChange)="createChart()" >
+              <ion-option  *ngFor="let type of typesOfPollutions"
+              [value]="type" >
+              {{type}}
+            </ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-content>
+        <ion-item>
+          
+          <ion-select [(ngModel)]="type" (ionChange)="createChart()" >  
+              <ion-option  *ngFor="let type of types"
+              [value]="type" >
+              {{type}}
+            </ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </div>
   <canvas #barCanvas ></canvas>
+  
 </ion-content>

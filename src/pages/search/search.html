@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="back">
     <ion-buttons left>
         <button ion-button icon-only menuToggle>
           <ion-icon name="menu" left></ion-icon>
@@ -18,10 +18,13 @@
 </ion-header>
 
 
-<ion-content padding>
-<ion-item>
-  <ion-label floating>Wpisz miasto...</ion-label>
-  <ion-input type="text"></ion-input>
-</ion-item>
+<ion-content class="bg" padding>
+  <ion-searchbar placeholder="Wpisz miasto..." (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list>
+   <button style="background: rgba(255,255,255,0)" ion-item *ngFor="let station of items" (click)="itemTapped($event, station)">
+     <h1>{{station.name}}</h1>
+     <h2>{{station.provinceName}}</h2>
+   </button>
+ </ion-list>
 
 </ion-content>

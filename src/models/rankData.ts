@@ -1,12 +1,12 @@
-import { Station } from './station';
 import { Pollutions } from './pollutions';
 
 export class RankData {
-    station: Station;
+    name:string;
     pollutions: Pollutions;
-    constructor (g_station: Station,g_pollutions: Pollutions){
-        this.station=g_station;
+    constructor (g_name:string="",g_pollutions: Pollutions =new Pollutions(null,null,null,null,null,null,null)){
+        this.name=g_name;
         this.pollutions=g_pollutions;
     }
+
 
 }

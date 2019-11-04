@@ -81,7 +81,6 @@ export class RestProvider {
           let stations=data;
           for (let i = 0; i < stations.length; i++){
             let station = stations[i];
-            //console.log(station);
             let state:StationObj=new StationObj;
             state.name = station.stationName;
             if(station.city){
@@ -103,7 +102,6 @@ export class RestProvider {
                       for (let k = 0; k < tempArray.length; k++){
                         if (tempArray[k].value != null){
                           polutions.push(new Polution (provide.param.paramFormula, tempArray[k].value));
-
                           break;
                         }
                       }
@@ -119,15 +117,12 @@ export class RestProvider {
              }
             this.stationsObjTab.push(state);
              if(this.stationsObjTab.length==stations.length){
-              // console.log(this.stationsObjTab);
                 resolve (this.stationsObjTab)
              }
              });
          		 if(i-10>stations.length)
              		 resolve (this.stationsObjTab);
-
             }
-
           }
       }
     );

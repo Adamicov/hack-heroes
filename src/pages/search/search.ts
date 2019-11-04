@@ -28,6 +28,7 @@ export class SearchPage {
             content: "Właśnie pobierane są najświeższe informacje!",
          });
         loader.present();
+
        this.restProvider.getTab()
        .then((data: StationObj[]) => {
             this.stations = data;
@@ -65,12 +66,16 @@ export class SearchPage {
     const val = ev.target.value;
 
     // if the value is an empty string don't filter the items
+
     if (this.items && val && val.trim() != '') {
-      this.items = this.items.filter((item) => {
-        return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-    }
-  }
+
+      if (val && val.trim() != '') {
+
+       this.items = this.items.filter((item) => {
+         return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+       })
+     }
+   }
 
   itemTapped(event, item) {
     this.navCtrl.push(StationDetailsPage, {item: item});

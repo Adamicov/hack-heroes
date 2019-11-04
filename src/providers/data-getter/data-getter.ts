@@ -38,14 +38,13 @@ export class DataGetterProvider {
 			this.stations=data;
 			let stationsObjTab=this.stationsObjTab;
 			let restProvider=this.restProvider;	
-			console.log("ok");
-			console.log(this.stations);
+
 			 	var def = new Promise(resolve=>{
 				console.log(this.stations);
 			    
 		    	for (let i = 0; i < this.stations.length; i++){
 				    let station = this.stations[i];
-				    console.log(station);
+
 				    let state:StationObj=new StationObj;
 				    state.name = station.stationName;
 				    state.provinceName = station.city.commune.provinceName;

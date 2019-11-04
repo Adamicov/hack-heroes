@@ -10,13 +10,14 @@ import {RankPage} from '../pages/rank/rank';
 import {SearchPage} from '../pages/search/search';
 import { StationDetailsPage } from '../pages/station-details/station-details';
 import { TestPage } from '../pages/test/test';
+import { MyStationPage } from '../pages/my-station/my-station';
 
 @Component({templateUrl : 'app.html'})
 export class MyApp {
 
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = FavouritesPage;
+  rootPage: any = SearchPage;
   pages: Array<{title : string, component: any, icon: string}>;
 
   constructor(public platform: Platform, public menu: MenuController,
@@ -25,12 +26,13 @@ export class MyApp {
     this.initializeApp();
 
     this.pages = [
-      {title : 'Ulubione', component : FavouritesPage, icon : 'heart'},
+      {title: 'Moja Okolica', component: MyStationPage, icon: 'home'},
+    //  {title : 'Ulubione', component : FavouritesPage, icon : 'heart'},
       {title : 'Mapa', component : MapPage, icon : 'map'},
       {title : 'Ranking', component : RankPage, icon : 'podium'},
       {title : 'Szukaj', component : SearchPage, icon : 'search'},
-      {title : 'O nas!', component : AboutPage, icon : 'information-circle'},
-      {title : 'TestPage', component: TestPage, icon: 'infinite'}
+      {title : 'O nas!', component : AboutPage, icon : 'information-circle'}
+      //{title : 'TestPage', component: TestPage, icon: 'infinite'}
     ];
   }
   initializeApp() {
@@ -49,4 +51,3 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 }
-
